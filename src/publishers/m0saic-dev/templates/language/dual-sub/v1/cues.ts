@@ -25,7 +25,7 @@ const ASS_OVERRIDE = /\{\\[^}]*\}/g;
  * drawtext offers no coverage detection (that's ffmpeg, not fixable here).
  * The sensible home for full coverage is the in-house SVG glyph rasterizer
  * (@m0saic/text, rasterizer:"svg") — see
- * .ai/proposed-plans/svg-text-glyph-fallback.md.
+ * the internal svg-text-glyph-fallback notes.
  */
 const NON_PRINTING = /[\u0000-\u0008\u000B-\u001F\u007F-\u009F\u200B-\u200F\u2060\uFEFF]/g;
 const LINE_SEPARATORS = /[\u2028\u2029]/g;

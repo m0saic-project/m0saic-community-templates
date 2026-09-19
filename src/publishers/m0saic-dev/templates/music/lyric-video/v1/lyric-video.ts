@@ -37,7 +37,7 @@ import { renderLyricVideoTutorial } from "./lyric-video-tutorial";
  * length, else the last timed line; the doc authors the result so the
  * engine's slot-length audio cap never truncates the track.
  *
- * Design doc: .ai/proposed-plans/lyric-video-cue-track.md
+ * Design doc: the internal lyric-video-cue-track notes
  */
 export type LyricVideoProps = {
   songId?: string;

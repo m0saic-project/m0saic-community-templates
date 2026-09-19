@@ -10,7 +10,7 @@ import { type DualSubLayoutKind, type DualSubSizeProfile } from "./layout";
  * drives coverage, reveal delay, and de-emphasis; presets are named levels on
  * the dial. Deterministic: seeded omission, no clocks, no randomness.
  *
- * Design doc: .ai/proposed-plans/language-learning-template-design.md
+ * Design doc: the internal language-learning-template-design notes
  */
 export type DualSubProps = {
     sourceId?: string;

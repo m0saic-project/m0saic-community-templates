@@ -1,8 +1,16 @@
 {
   "name": "@m0saic/community-templates",
   "version": "0.2.0",
-  "private": true,
+  "private": false,
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m0saic-project/m0saic-community-templates.git"
+  },
+  "homepage": "https://github.com/m0saic-project/m0saic-community-templates#readme",
+  "bugs": {
+    "url": "https://github.com/m0saic-project/m0saic-community-templates/issues"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -20,11 +28,11 @@
     "test": "jest"
   },
   "dependencies": {
-    "@m0saic/dsl": "*",
-    "@m0saic/dsl-stdlib": "*",
-    "@m0saic/platform": "*",
-    "@m0saic/template-utils": "*",
-    "@m0saic/types": "*"
+    "@m0saic/dsl": "^2.0.0",
+    "@m0saic/dsl-stdlib": "^3.0.0",
+    "@m0saic/platform": "^0.2.0",
+    "@m0saic/template-utils": "^0.2.0",
+    "@m0saic/types": "^0.2.0"
   },
   "devDependencies": {
     "@dagrejs/dagre": "3.1.1",
