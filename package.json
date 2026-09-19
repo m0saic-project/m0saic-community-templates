@@ -1,0 +1,36 @@
+{
+  "name": "@m0saic/community-templates",
+  "version": "0.2.0",
+  "private": true,
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "template-manifest.json",
+    "assets",
+    "dep-allowlist.json",
+    "LICENSE",
+    "NOTICE.md",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\" && tsc -p tsconfig.json && node tools/copy-assets.mjs && node dist/gen-template-manifest.js",
+    "serve:dev": "node tools/serve-dev.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@m0saic/dsl": "*",
+    "@m0saic/dsl-stdlib": "*",
+    "@m0saic/platform": "*",
+    "@m0saic/template-utils": "*",
+    "@m0saic/types": "*"
+  },
+  "devDependencies": {
+    "@dagrejs/dagre": "3.1.1",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.10.1",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.5"
+  }
+}

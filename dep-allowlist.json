@@ -1,0 +1,51 @@
+{
+  "comment": "The dependency policy gate — enforced by tools/check-deps.mjs (CI) and mirrored by @m0saic/platform's TEMPLATE_REPO_DEP_ALLOWLIST (a monorepo test keeps the two in lockstep). Template code may import ONLY these packages/builtins — exactly what the hosts (CLI + Desktop) already ship: the @m0saic/* substrate and the node builtins below. A native or third-party runtime dependency is a founder decision, never a per-PR addition; anything else needs a curator-approved per-file exception below.",
+  "packages": [
+    "@m0saic/types",
+    "@m0saic/template-utils",
+    "@m0saic/dsl-stdlib",
+    "@m0saic/platform",
+    "@m0saic/dsl"
+  ],
+  "builtins": [
+    "node:path",
+    "path"
+  ],
+  "exceptions": [
+    {
+      "file": "src/gen-template-manifest.ts",
+      "allow": [
+        "node:fs"
+      ],
+      "reason": "build tool (writes template-manifest.json) — not template runtime code"
+    },
+    {
+      "file": "src/hello-world/v1/hello-world.ts",
+      "allow": [
+        "node:fs"
+      ],
+      "reason": "read-only existsSync probe of the bundled Community M mark — the front door falls back to the brand M when the mint has not baked one (same shape as the multi-panel-figure demo-charts probe)"
+    },
+    {
+      "file": "src/publishers/m0saic-dev/templates/science/multi-panel-figure/v1/demo-fixture.ts",
+      "allow": [
+        "node:fs"
+      ],
+      "reason": "read-only existsSync probe of the bundled demo charts (asar-translated paths)"
+    },
+    {
+      "file": "src/publishers/m0saic-dev/templates/mermaid/_shared/load-source.ts",
+      "allow": [
+        "fs"
+      ],
+      "reason": "read-only readFileSync of the user-supplied diagramPath (.mmd/.mermaid text) — the pack's single fs touch, behind the template's fs.read capability"
+    },
+    {
+      "file": "src/publishers/m0saic-dev/templates/mermaid/_shared/layout/dagre-layout.ts",
+      "allow": [
+        "@dagrejs/dagre"
+      ],
+      "reason": "mermaid flowchart is DISCONNECTED (2026-09-07) — not registered by the publisher and not in template-registry.ts, so it ships nowhere. dagre is a devDependency only; a per-file exception keeps the source compiling and its tests running without putting @dagrejs/dagre into the repo-wide allowlist (which would also force it into apps/mosaic). Drop this exception when dagre is vendored and the template is re-registered."
+    }
+  ]
+}

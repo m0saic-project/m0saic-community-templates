@@ -1,0 +1,41 @@
+{
+  "sourceId": "streamer.png",
+  "goalAmount": 500,
+  "startAmount": 0,
+  "currency": "$",
+  "showGoal": true,
+  "auto": {
+    "seed": 7,
+    "tipCount": 12,
+    "curve": "big-finish",
+    "startDelaySec": 1.0,
+    "finishFrac": 0.9
+  },
+  "bar": {
+    "placement": "top",
+    "rounding": 0.5,
+    "trackColor": "#ECECEC",
+    "fillColor": "#8B5CF6",
+    "tipFlash": true
+  },
+  "label": {
+    "placement": "left",
+    "color": "#FFFFFF",
+    "outlineColor": "black@0.85",
+    "bold": true
+  },
+  "geometry": {
+    "labelRect": {
+      "x": 64,
+      "y": 48,
+      "w": 290,
+      "h": 104
+    },
+    "barRect": {
+      "x": 370,
+      "y": 48,
+      "w": 600,
+      "h": 104
+    }
+  }
+}

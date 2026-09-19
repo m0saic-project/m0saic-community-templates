@@ -1,0 +1,20 @@
+import type { TerritoryProfile } from "@m0saic/template-utils";
+import type { DvdTechSpecs, DvdWrapV1Props, DvdWrapVariant } from "./props";
+export type EffectiveDvdVariant = {
+    territory: string;
+    skuLabel: string;
+    profile: TerritoryProfile;
+    title: string;
+    synopsis: string;
+    editionFlash: string;
+    barcodeValue: string;
+    catalogNumber: string;
+    ratingCertification: string;
+    distributorName: string;
+    distributorAddress: string;
+    legalTextOverride?: string;
+    techSpecs: DvdTechSpecs;
+};
+export declare function parseDvdVariants(value: DvdWrapV1Props["variants"]): DvdWrapVariant[];
+export declare function resolveEffectiveVariant(props: DvdWrapV1Props, variant?: DvdWrapVariant): EffectiveDvdVariant;
+export declare function requestedVariants(props: DvdWrapV1Props): Array<DvdWrapVariant | undefined>;

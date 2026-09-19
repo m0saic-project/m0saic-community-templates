@@ -1,0 +1,217 @@
+import type { MosaicColor } from "@m0saic/types";
+import type { DpiFloorPolicy, TerritoryProfile } from "@m0saic/template-utils";
+import { definePropsSchema } from "@m0saic/template-utils";
+
+export type DvdTerritoryId = "US" | "CA" | "UK" | "DE" | "FR" | "AU" | "JP" | "custom";
+export type DvdCaseType = "standard" | "slim" | "multi";
+export type DvdWrapArtifact = "wrap" | "front" | "spine" | "back" | "proof" | "preview";
+
+export type DvdTechSpecs = {
+  runtimeMinutes?: number;
+  aspectRatio?: string;
+  screenFormat?: string;
+  discFormat?: string;
+  audioTracks?: string[];
+  subtitleLanguages?: string[];
+};
+
+export type DvdWrapVariant = {
+  territory: DvdTerritoryId | string;
+  skuLabel?: string;
+  barcodeValue?: string;
+  catalogNumber?: string;
+  ratingCertification?: string;
+  titleOverride?: string;
+  synopsisOverride?: string;
+  editionFlashOverride?: string;
+  distributorName?: string;
+  distributorAddress?: string;
+  legalTextOverride?: string;
+  techSpecOverrides?: Partial<DvdTechSpecs>;
+  profile?: Partial<TerritoryProfile>;
+};
+
+export type DvdWrapV1Props = {
+  frontArt?: string;
+  backArt?: string;
+  spineArt?: string;
+  titleTreatmentArt?: string;
+  studioLogoArt?: string;
+  stills?: string[];
+  laurelArts?: string[];
+  audioBadgeArts?: string[];
+  billingBlockArt?: string;
+  ratingBadgeArts?: string[];
+  ratingBadgeCerts?: string[];
+  distributorLogoArts?: string[];
+  distributorLogoKeys?: string[];
+
+  title: string;
+  editionFlash?: string;
+  synopsis?: string;
+  billingBlockText?: string;
+  techSpecs?: DvdTechSpecs;
+  copyrightText?: string;
+  studioName?: string;
+  year?: number;
+
+  catalogNumber?: string;
+  barcodeValue?: string;
+  ratingCertification?: string;
+  distributorName?: string;
+  distributorAddress?: string;
+
+  territory?: DvdTerritoryId | string;
+  variants?: DvdWrapVariant[] | string;
+  profileOverrides?: Partial<TerritoryProfile> | string;
+
+  caseType?: DvdCaseType;
+  discCount?: number;
+  spineWidthMm?: number;
+  dpi?: number;
+  bleedMm?: number;
+  artifacts?: DvdWrapArtifact[];
+  usePlaceholderBadges?: boolean;
+  dielineOverlay?: boolean;
+  dpiFloorPolicy?: DpiFloorPolicy;
+  backColor?: MosaicColor;
+  debugLayout?: boolean;
+};
+
+const fString = (label: string, description: string) => ({
+  type: "string" as const,
+  required: false,
+  description,
+  meta: { ui: { label } },
+});
+
+const fNumber = (label: string, description: string, min: number, max: number, placeholder?: string) => ({
+  type: "number" as const,
+  required: false,
+  description,
+  meta: { constraints: { min, max }, ui: { label }, ...(placeholder ? { control: { placeholder } } : {}) },
+});
+
+const fStrings = (label: string, description: string) => ({
+  type: "string[]" as const,
+  required: false,
+  description,
+  meta: { ui: { label } },
+});
+
+export const dvdWrapPropsSchema = definePropsSchema<DvdWrapV1Props>({
+  frontArt: { type: "media", required: false, description: "Full-bleed front-panel key art.", meta: { control: { accept: ["image"] }, ui: { label: "Front art", order: 1, primary: true } } },
+  backArt: { type: "media", required: false, description: "Optional full-bleed back-panel art.", meta: { control: { accept: ["image"] }, ui: { label: "Back art", order: 2 } } },
+  spineArt: { type: "media", required: false, description: "Optional spine art.", meta: { control: { accept: ["image"] }, ui: { label: "Spine art", order: 3 } } },
+  titleTreatmentArt: { type: "media", required: false, description: "Approved title treatment; preferred over the draft typeset fallback.", meta: { control: { accept: ["image"] }, ui: { label: "Title treatment", order: 4 } } },
+  studioLogoArt: { type: "media", required: false, description: "Studio logo art.", meta: { control: { accept: ["image"] }, ui: { label: "Studio logo", order: 5 } } },
+  stills: { type: "media[]", required: false, description: "Zero to six back-panel stills.", meta: { constraints: { maxItems: 6 }, control: { multiple: true, accept: ["image"] }, ui: { label: "Stills", order: 6 } } },
+  laurelArts: { type: "media[]", required: false, description: "Front-panel laurels or review-mark artwork.", meta: { control: { multiple: true, accept: ["image"] }, ui: { label: "Laurels", order: 7 } } },
+  audioBadgeArts: { type: "media[]", required: false, description: "Licensed audio-format mark artwork.", meta: { control: { multiple: true, accept: ["image"] }, ui: { label: "Audio badges", order: 8 } } },
+  billingBlockArt: { type: "media", required: false, description: "Approved billing-block artwork; recommended over typeset fallback.", meta: { control: { accept: ["image"] }, ui: { label: "Billing block art", order: 9 } } },
+  ratingBadgeArts: { type: "media[]", required: false, description: "User-supplied rating-mark artwork.", meta: { constraints: { maxItems: 32 }, control: { multiple: true, accept: ["image"] }, ui: { label: "Rating badges", order: 10 } } },
+  ratingBadgeCerts: { type: "string[]", required: false, description: "Join keys for Rating badges, such as BBFC:12.", meta: { constraints: { lengthOf: "ratingBadgeArts" }, ui: { label: "Rating badge keys", order: 11 } } },
+  distributorLogoArts: { type: "media[]", required: false, description: "Distributor logo artwork.", meta: { control: { multiple: true, accept: ["image"] }, ui: { label: "Distributor logos", order: 12 } } },
+  distributorLogoKeys: { type: "string[]", required: false, description: "Distributor-name join keys for Distributor logos.", meta: { constraints: { lengthOf: "distributorLogoArts" }, ui: { label: "Distributor logo keys", order: 13 } } },
+
+  title: { type: "string", required: true, description: "Release title.", meta: { ui: { label: "Title", order: 1, primary: true } } },
+  editionFlash: fString("Edition flash", "Optional edition callout, such as 2-Disc Special Edition."),
+  synopsis: fString("Synopsis", "Localized back-cover synopsis copy."),
+  billingBlockText: fString("Billing block text", "Draft-grade typeset fallback when approved artwork is unavailable."),
+  techSpecs: {
+    type: "group",
+    required: false,
+    description: "Structured disc and presentation specifications.",
+    meta: { ui: { label: "Technical specs", collapsedByDefault: true } },
+    fields: {
+      runtimeMinutes: fNumber("Runtime", "Runtime in minutes.", 1, 10000),
+      aspectRatio: fString("Aspect ratio", "Picture aspect ratio."),
+      screenFormat: fString("Screen format", "Presentation format, such as Widescreen."),
+      discFormat: fString("Disc format", "DVD-5, DVD-9, or publisher-defined format."),
+      audioTracks: fStrings("Audio tracks", "Audio languages and formats."),
+      subtitleLanguages: fStrings("Subtitles", "Subtitle languages."),
+    },
+  },
+  copyrightText: fString("Copyright", "Copyright and rights statement."),
+  studioName: fString("Studio", "Studio or label name."),
+  year: fNumber("Year", "Copyright year.", 1888, 9999),
+
+  catalogNumber: fString("Catalog number", "Publisher or distributor catalog number."),
+  barcodeValue: fString("Barcode value", "UPC-A or EAN-13 payload; the territory profile selects the symbology."),
+  ratingCertification: fString("Rating certification", "Join key into Rating badge keys."),
+  distributorName: fString("Distributor", "Territory distributor identity."),
+  distributorAddress: fString("Distributor address", "Territory distributor postal address."),
+
+  territory: { type: "string", required: false, description: "Base territory profile.", meta: { constraints: { oneOf: ["US", "CA", "UK", "DE", "FR", "AU", "JP", "custom"] }, ui: { label: "Territory", order: 1 } } },
+  variants: {
+    type: "json",
+    required: false,
+    description: "Territory/SKU fan-out list. Empty renders the base territory once.",
+    meta: {
+      constraints: {
+        jsonSchema: {
+          type: "array",
+          items: {
+            type: "object",
+            required: ["territory"],
+            properties: {
+              territory: { type: "string" }, skuLabel: { type: "string" },
+              barcodeValue: { type: "string" }, catalogNumber: { type: "string" },
+              ratingCertification: { type: "string" }, titleOverride: { type: "string" },
+              synopsisOverride: { type: "string" }, profile: { type: "object" },
+            },
+          },
+        },
+      },
+      control: { flavor: "jsonModal" },
+      ui: { label: "Territory variants", order: 2 },
+    },
+  },
+  profileOverrides: { type: "json", required: false, description: "Advanced partial profile applied to every variant.", meta: { control: { flavor: "jsonModal" }, ui: { label: "Profile overrides", order: 3, consumer: "agent" } } },
+
+  caseType: { type: "string", required: false, description: "Keep-case family used to resolve the spine width.", meta: { constraints: { oneOf: ["standard", "slim", "multi"] }, ui: { label: "Case", order: 1 } } },
+  discCount: fNumber("Disc count", "Disc count; drives multi-case spine width.", 1, 12),
+  spineWidthMm: fNumber("Spine override", "Explicit spine width in millimetres; overrides the case table.", 3, 80, "by case type"),
+  dpi: fNumber("DPI", "Print raster density.", 72, 600),
+  bleedMm: fNumber("Bleed", "Bleed outside trim, millimetres.", 0, 20),
+  artifacts: { type: "string[]", required: false, description: "Artifacts emitted for each variant.", meta: { constraints: { minItems: 1, maxItems: 6, oneOf: ["wrap", "front", "spine", "back", "proof", "preview"] }, ui: { label: "Artifacts", order: 6 } } },
+  usePlaceholderBadges: { type: "boolean", required: false, description: "Use neutral, clearly unofficial rating placeholders for preview/proof work.", meta: { ui: { label: "Placeholder badges", order: 7 } } },
+  dielineOverlay: { type: "boolean", required: false, description: "Overlay bleed, trim, fold, and safe guides on wrap output.", meta: { ui: { label: "Dieline overlay", order: 8 } } },
+  dpiFloorPolicy: { type: "string", required: false, description: "Raster asset effective-DPI validation policy.", meta: { constraints: { oneOf: ["strict", "warn", "off"] }, ui: { label: "DPI policy", order: 9 } } },
+  backColor: { type: "string", required: false, description: "Back/spine fallback fill when artwork is omitted.", meta: { constraints: { isColor: true }, control: { colorPicker: true }, ui: { label: "Back color", order: 10 } } },
+  debugLayout: { type: "boolean", required: false, description: "Run label-keyed layout contract tripwires.", meta: { ui: { label: "Debug layout", order: 11, consumer: "agent" } } },
+});
+
+export const DVD_WRAP_DEFAULT_PROPS: DvdWrapV1Props = {
+  title: "M0SAIC FEATURE PRESENTATION",
+  editionFlash: "SPECIAL EDITION",
+  synopsis: "A deterministic print-production demo. Replace the key art and copy, then fan out territory-ready wrap masters from one structured release record.",
+  billingBlockText: "A M0SAIC PICTURES RELEASE",
+  techSpecs: {
+    runtimeMinutes: 118,
+    aspectRatio: "2.39:1",
+    screenFormat: "Widescreen",
+    discFormat: "DVD-9",
+    audioTracks: ["English 5.1", "French 2.0"],
+    subtitleLanguages: ["English", "French"],
+  },
+  copyrightText: "All rights reserved.",
+  studioName: "M0SAIC Pictures",
+  year: 2026,
+  catalogNumber: "M0S-1001-US",
+  barcodeValue: "012345678905",
+  ratingCertification: "MPAA:PG-13",
+  distributorName: "M0SAIC Distribution",
+  distributorAddress: "New York, NY, USA",
+  territory: "US",
+  caseType: "standard",
+  discCount: 1,
+  dpi: 300,
+  bleedMm: 3,
+  artifacts: ["wrap"],
+  usePlaceholderBadges: false,
+  dielineOverlay: false,
+  dpiFloorPolicy: "warn",
+  backColor: "#10141d",
+  debugLayout: false,
+};

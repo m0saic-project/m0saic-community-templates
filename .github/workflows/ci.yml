@@ -1,0 +1,28 @@
+name: ci
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+jobs:
+  policy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Dependency + publisher policy gate
+        run: node tools/check-deps.mjs
+  release:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify release.json (ed25519 over the tree hash) against keys/
+        run: node tools/verify-release.mjs ${{ startsWith(github.ref, 'refs/tags/') && '--require-tag' || '' }}

@@ -1,0 +1,16 @@
+export { publisher } from "./publisher";
+export * from "./templates";
+/**
+ * Every template this publisher ships, in stable order.
+ *
+ * NOTE: `MermaidFlowchartV1` is DISCONNECTED (2026-09-07) — not unbuilt, just
+ * unregistered. Its `@dagrejs/dagre` dependency would have to enter the
+ * template-repo dep allowlist (and therefore apps/mosaic) to ship, which is a
+ * policy widening the pack isn't worth today. Source + tests stay in-tree and
+ * dagre stays a devDependency; re-register it once dagre is vendored. Template modules
+ * export plain template objects — they do NOT self-register; the host (or
+ * the package entry) decides what to register.
+ */
+export declare const templates: (import("packages/types/dist").MosaicTemplate<import("./templates/creator/drop-calendar/v1/types").DropCalendarV1Props, import("packages/types/dist").MosaicTemplateOutputs, import("packages/types/dist").MosaicTemplateUpstreamVariables, import("packages/types/dist").MosaicTemplateUpstreamData, import("packages/types/dist").MosaicTemplateSidecars> | import("packages/types/dist").MosaicTemplate<import("./templates/creator/new-video-story/v1/types").NewVideoStoryV1Props, import("packages/types/dist").MosaicTemplateOutputs, import("packages/types/dist").MosaicTemplateUpstreamVariables, import("packages/types/dist").MosaicTemplateUpstreamData, import("packages/types/dist").MosaicTemplateSidecars> | import("packages/types/dist").MosaicTemplate<import("./templates/creator/tip-goal/v1/types").TipGoalV1Props, import("packages/types/dist").MosaicTemplateOutputs, import("packages/types/dist").MosaicTemplateUpstreamVariables, import("packages/types/dist").MosaicTemplateUpstreamData, import("packages/types/dist").MosaicTemplateSidecars> | import("packages/types/dist").MosaicTemplate<import("./templates").DualSubProps, import("packages/types/dist").MosaicTemplateOutputs, import("packages/types/dist").MosaicTemplateUpstreamVariables, import("packages/types/dist").MosaicTemplateUpstreamData, import("packages/types/dist").MosaicTemplateSidecars> | import("packages/types/dist").MosaicTemplate<import("./templates").LyricVideoProps, import("packages/types/dist").MosaicTemplateOutputs, import("packages/types/dist").MosaicTemplateUpstreamVariables, import("packages/types/dist").MosaicTemplateUpstreamData, import("packages/types/dist").MosaicTemplateSidecars> | import("packages/types/dist").MosaicTemplate<import("./templates").SearchTypingProps, import("packages/types/dist").MosaicTemplateOutputs, import("packages/types/dist").MosaicTemplateUpstreamVariables, import("packages/types/dist").MosaicTemplateUpstreamData, import("packages/types/dist").MosaicTemplateSidecars> | import("packages/types/dist").MosaicTemplate<import("./templates").DvdWrapV1Props, import("packages/types/dist").MosaicTemplateOutputs, import("packages/types/dist").MosaicTemplateUpstreamVariables, import("packages/types/dist").MosaicTemplateUpstreamData, {
+    packaging: import("./templates").DvdPackagingSidecar;
+}> | import("packages/types/dist").MosaicTemplate<import("./templates").MultiPanelFigureProps, import("packages/types/dist").MosaicTemplateOutputs, import("packages/types/dist").MosaicTemplateUpstreamVariables, import("packages/types/dist").MosaicTemplateUpstreamData, import("packages/types/dist").MosaicTemplateSidecars>)[];

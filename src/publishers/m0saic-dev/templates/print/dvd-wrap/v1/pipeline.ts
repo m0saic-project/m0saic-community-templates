@@ -1,0 +1,173 @@
+import type {
+  MosaicDocument,
+  MosaicDocumentPipeline,
+  MosaicEngineContext,
+  MosaicPipelineStep,
+} from "@m0saic/types";
+import { makeErrorMosaic, mmToPx, type ResolvedDieline } from "@m0saic/template-utils";
+import type { DvdPanelId } from "./dieline";
+import type { DvdWrapArtifact, DvdWrapV1Props, DvdWrapVariant } from "./props";
+import { renderDvdArtifact } from "./rendering";
+import { buildPackagingSidecar, validateDvdVariant } from "./validation";
+import type { DvdValidationResult } from "./validation";
+import { requestedVariants, resolveEffectiveVariant, type EffectiveDvdVariant } from "./variants";
+
+const ARTIFACTS: readonly DvdWrapArtifact[] = ["wrap", "front", "spine", "back", "proof", "preview"];
+
+export function resolveDvdArtifacts(value: DvdWrapV1Props["artifacts"]): DvdWrapArtifact[] {
+  const artifacts: DvdWrapArtifact[] = value?.length ? value : ["wrap"];
+  const unique: DvdWrapArtifact[] = [];
+  for (const artifact of artifacts) {
+    if (!ARTIFACTS.includes(artifact)) throw new Error(`unknown DVD artifact ${JSON.stringify(artifact)}`);
+    if (!unique.includes(artifact)) unique.push(artifact);
+  }
+  if (!unique.length) throw new Error("artifacts must select at least one output");
+  return unique;
+}
+
+function slug(value: string): string {
+  const out = value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  return out || "variant";
+}
+
+export function buildDvdStepNames(
+  variants: Array<DvdWrapVariant | undefined>,
+  artifacts: DvdWrapArtifact[],
+  baseTerritory: string,
+): string[][] {
+  const seen = new Map<string, number>();
+  return variants.map((variant) => {
+    const territory = slug(variant?.territory ?? baseTerritory);
+    const ordinal = (seen.get(territory) ?? 0) + 1;
+    seen.set(territory, ordinal);
+    const prefix = `${territory}${ordinal === 1 ? "" : ordinal}`;
+    return artifacts.map((artifact) => `${prefix}-${artifact}`);
+  });
+}
+
+function artifactSize(
+  artifact: DvdWrapArtifact,
+  dieline: ResolvedDieline<DvdPanelId>,
+): { width: number; height: number } {
+  if (artifact === "front" || artifact === "back") {
+    return { width: mmToPx(130, dieline.dpi), height: mmToPx(dieline.spec.heightMm, dieline.dpi) };
+  }
+  if (artifact === "spine") {
+    const spine = dieline.panels.find((panel) => panel.id === "spine");
+    return { width: mmToPx(spine?.widthMm ?? 14, dieline.dpi), height: mmToPx(dieline.spec.heightMm, dieline.dpi) };
+  }
+  if (artifact === "preview") {
+    return { width: 900, height: Math.round((dieline.canvas.height / dieline.canvas.width) * 900) };
+  }
+  return {
+    width: dieline.canvas.width,
+    height: dieline.canvas.height + (artifact === "proof" ? mmToPx(16, dieline.dpi) : 0),
+  };
+}
+
+function errorStepDocument(args: {
+  message: string;
+  artifact: DvdWrapArtifact;
+  dieline: ResolvedDieline<DvdPanelId>;
+  props: DvdWrapV1Props;
+  effective?: EffectiveDvdVariant;
+  validation?: DvdValidationResult;
+  ctx: MosaicEngineContext;
+}): MosaicDocument {
+  const size = artifactSize(args.artifact, args.dieline);
+  const doc = makeErrorMosaic(args.message, {
+    title: "DVD Wrap",
+    errorCode: "DVD_VARIANT_INVALID",
+    width: size.width,
+    height: size.height,
+  });
+  const sidecars = args.effective
+    ? {
+        packaging: buildPackagingSidecar({
+          artifact: args.artifact,
+          props: args.props,
+          variant: args.effective,
+          dieline: args.dieline,
+          validation: args.validation ?? validateDvdVariant(args.props, args.effective, args.ctx),
+          moduleWidthPx: 0,
+          achievedMagnificationPct: 0,
+        }),
+      }
+    : {
+        packaging: {
+          templateId: "@m0saic-dev/print/dvd-wrap/v1",
+          schemaVersion: 1,
+          artifact: args.artifact,
+          errors: [{ severity: "error", code: "VARIANT_RESOLUTION", message: args.message }],
+          warnings: [],
+        },
+      };
+  return {
+    ...doc,
+    size,
+    fps: 30,
+    durationMs: 1000,
+    format: { kind: "image", container: "png", pixelFormat: "rgba" },
+    sidecars,
+  };
+}
+
+export function renderDvdWrapPipeline(
+  props: DvdWrapV1Props,
+  ctx: MosaicEngineContext,
+  dieline: ResolvedDieline<DvdPanelId>,
+): MosaicDocumentPipeline {
+  const artifacts = resolveDvdArtifacts(props.artifacts);
+  const variants = requestedVariants(props);
+  const names = buildDvdStepNames(variants, artifacts, props.territory ?? "US");
+  const batchStepCount = variants.length * artifacts.length;
+  const steps: MosaicPipelineStep[] = [];
+
+  variants.forEach((variant, variantIndex) => {
+    let effective: EffectiveDvdVariant | undefined;
+    let resolutionError: string | undefined;
+    try {
+      effective = resolveEffectiveVariant(props, variant);
+    } catch (cause) {
+      resolutionError = cause instanceof Error ? cause.message : String(cause);
+    }
+
+    let validation = effective ? validateDvdVariant(props, effective, ctx) : undefined;
+    if (validation && batchStepCount > 48) {
+      validation = {
+        ...validation,
+        diagnostics: [
+          ...validation.diagnostics,
+          {
+            severity: "warn",
+            code: "BATCH_STEP_COUNT",
+            message: `${batchStepCount} outputs requested; iterate with preview or fewer variants before the production batch`,
+          },
+        ],
+      };
+    }
+    const validationErrors = validation?.diagnostics.filter((item) => item.severity === "error") ?? [];
+    const errorMessage = resolutionError ?? (validationErrors.length
+      ? validationErrors.map((item) => `[${item.code}] ${item.message}`).join("\n")
+      : undefined);
+
+    artifacts.forEach((artifact, artifactIndex) => {
+      const file = errorMessage || !effective || !validation
+        ? errorStepDocument({ message: errorMessage ?? "Variant could not be resolved", artifact, dieline, props, ...(effective ? { effective } : {}), ...(validation ? { validation } : {}), ctx })
+        : renderDvdArtifact({ artifact, props, variant: effective, validation, dieline, ctx }).doc;
+      steps.push({
+        name: names[variantIndex][artifactIndex],
+        label: effective?.skuLabel ?? variant?.skuLabel ?? `${props.title || "dvd"}-${variant?.territory ?? props.territory ?? "US"}`,
+        durationMs: 1000,
+        file,
+      });
+    });
+  });
+
+  return {
+    kind: "mosaic_pipeline",
+    version: 1,
+    emit: "multi",
+    steps,
+  };
+}
