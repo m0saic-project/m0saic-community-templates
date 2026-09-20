@@ -23,9 +23,11 @@
     "README.md"
   ],
   "scripts": {
-    "build": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\" && tsc -p tsconfig.json && node tools/copy-assets.mjs && node dist/gen-template-manifest.js",
+    "build": "node tools/check-freeze.mjs && node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\" && tsc -p tsconfig.json && node tools/copy-assets.mjs && node dist/gen-template-manifest.js",
+    "check:freeze": "node tools/check-freeze.mjs",
+    "freeze:mint": "node tools/check-freeze.mjs --update",
     "serve:dev": "node tools/serve-dev.js",
-    "test": "jest"
+    "test": "jest && node --test tools/check-freeze.test.mjs"
   },
   "dependencies": {
     "@m0saic/dsl": "^2.0.0",

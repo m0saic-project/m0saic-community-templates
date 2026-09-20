@@ -61,6 +61,13 @@ host decides what to register. See `src/_PUBLISHER_STARTER/README.md` for the
 full walkthrough, and `CONTRIBUTING.md` for the license + dependency rules.
 
 
+## Frozen once shipped
+
+`frozen.manifest.json` hashes every template file a signed release shipped.
+`node tools/check-freeze.mjs` (run by `npm run build` and by CI) fails on any
+change to one of them — a fix is a new `vN+1` folder, the old version is
+deprecated. See CONTRIBUTING.md § "Frozen once shipped".
+
 ## Releases — what this repository is
 
 This repo is a **signed snapshot**, not a self-building project (yet). It is

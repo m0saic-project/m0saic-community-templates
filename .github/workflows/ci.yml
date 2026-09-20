@@ -14,6 +14,8 @@ jobs:
           node-version: 22
       - name: Dependency + publisher policy gate
         run: node tools/check-deps.mjs
+      - name: Template freeze (frozen.manifest.json — shipped files never change)
+        run: node tools/check-freeze.mjs --require-complete
   release:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest

@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "tag": "v2026.09.1",
-  "publishedAt": "2026-09-19T21:06:54.341Z",
-  "treeSha256": "bec174b1897a7875e1dfb38d188ffe650fcab0b59f1cbbdc551b429ed25fb96e",
+  "tag": "v2026.09.2",
+  "publishedAt": "2026-09-20T05:12:35.380Z",
+  "treeSha256": "3f7383b196fa81eeb8779ab864a3021dffc1504d567a741e48c2fd2391ddd780",
   "signature": {
     "kid": "k1",
     "alg": "ed25519",
-    "sig": "joNt9BI-X0T8gEgN8Sy5H3jlKzBikkBgrYlqj7mL-Kns9XXRjDJWNpAiJK3b_1CIQfpmfEulPgA7vAIGyBBFBA"
+    "sig": "GWUVMZQmG_1Kyq-IolAsmZohGaI9BlpBj9R-uxT2hgeRTtHZdgmmh-l5h3LDj9smKUS-ZcGcfPa0r46BqeK8Cw"
   }
 }

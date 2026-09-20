@@ -31,6 +31,33 @@ refused. Contributors never sign anything: send a PR, the maintainers build,
 sign and tag the release. To render your own work locally before it is
 merged, load your fork with `--template-repo` under your own namespace.
 
+## Frozen once shipped
+
+A template that has appeared in a signed release is **frozen**: its files
+never change again, comments included. Someone holds its output; a shared
+link, a committed `.mosaic`, a rendered deliverable must not change meaning
+under them. This is enforced, not remembered: `frozen.manifest.json` hashes
+every shipped template file (and the helpers it imports), `npm run build` and
+this repo's CI run `node tools/check-freeze.mjs` and fail on any change or
+deletion, and the maintainers' pre-commit hook refuses the commit.
+
+To fix or improve a shipped template:
+
+1. Copy its folder to the next version — `…/<slug>/v1/` → `…/<slug>/v2/` —
+   and make the change there (a shared helper it needs changed: copy the
+   helper into the new folder too; `_shared/` is frozen on the same terms).
+2. On the old version set `deprecated: { replacement: "@<handle>/<pack>/<slug>/v2" }`
+   (a reason is welcome). It stays registered and renderable; hosts hide it
+   by default and point at the replacement.
+3. Register the new id in `src/template-registry.ts`. The registry, the
+   barrels, `publisher.ts` and `src/repo.ts` are not frozen — they are what a
+   new template has to touch.
+
+The manifest is minted by the maintainers at each release
+(`node tools/check-freeze.mjs --update --tag <tag>`), so a template is frozen
+from the first tag that ships it. Between releases, new folders are simply
+"not yet frozen".
+
 ## Publishing checklist
 
 - Templates live under `src/publishers/<your-handle>/templates/<pack>/<slug>/vN/`
