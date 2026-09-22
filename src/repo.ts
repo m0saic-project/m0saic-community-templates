@@ -111,7 +111,7 @@ export const TEMPLATE_PACKS: MosaicTemplatePackDescriptor[] = [
     title: "Education",
     description:
       "Cards for classroom data: grades, progress, and other numbers teachers and students actually look at.",
-    publisher: "tim3716",
+    publisher: "exsencer",
   },
 ];
 

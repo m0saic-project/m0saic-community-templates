@@ -6,8 +6,8 @@ import type { MosaicTemplatePublisherDescriptor } from "@m0saic/types";
  * under `src/publishers/`. Handles matching /m0saic/i are reserved.
  */
 export const publisher: MosaicTemplatePublisherDescriptor = {
-  id: "tim3716",
-  displayName: "tim3716",
+  id: "exsencer",
+  displayName: "exsencer",
   description: "Data and education cards.",
-  entryModule: "./dist/publishers/tim3716/index.js",
+  entryModule: "./dist/publishers/exsencer/index.js",
 };

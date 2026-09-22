@@ -27,7 +27,7 @@ export const PUBLISHER_ENTRIES: Record<string, () => PublisherModule> = {
   // Inline require is deliberate: lazy per-publisher evaluation IS the point —
   // a top-of-file import would evaluate every publisher on entry load.
   "m0saic-dev": () => require("./m0saic-dev") as PublisherModule,
-  "tim3716": () => require("./tim3716") as PublisherModule,
+  "exsencer": () => require("./exsencer") as PublisherModule,
   // The repo's OWN handle — the front door, which lives top-level at
   // `src/front-door.ts` rather than under a publisher folder. See its
   // docblock: the greeting belongs to the repo, not to a contributor.

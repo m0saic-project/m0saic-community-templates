@@ -17,7 +17,7 @@ const render = (
   h = 720,
 ): Promise<any> => ReportCardV1.render({ ...ReportCardV1.defaultProps, ...props }, makeCtx(w, h)) as Promise<any>;
 
-describe("@tim3716/education/report-card/v1", () => {
+describe("@exsencer/education/report-card/v1", () => {
   it("binds every name and grade to the rect that shows it", async () => {
     const doc = await render();
     const { byProp, rejected } = resolvePropBindings(doc, 1280, 720, { propsSchema: ReportCardV1.propsSchema });

@@ -16,7 +16,7 @@ import {
 } from "@m0saic/template-utils";
 
 /**
- * `@tim3716/education/report-card/v1` — a mosaic report card: five
+ * `@exsencer/education/report-card/v1` — a mosaic report card: five
  * subject tiles of unevenly weighted sizes (a hero tile plus four small
  * ones) and a sixth accent tile holding the average, computed live from
  * the five grades every render.
@@ -61,7 +61,7 @@ export type ReportCardProps = {
   pageColor?: string;
 };
 
-const ID = "@tim3716/education/report-card/v1";
+const ID = "@exsencer/education/report-card/v1";
 const HEX = /^#[0-9a-fA-F]{6}$/;
 const ASCII = /^[\x00-\x7F]*$/;
 
