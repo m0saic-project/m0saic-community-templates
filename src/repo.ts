@@ -106,6 +106,13 @@ export const TEMPLATE_PACKS: MosaicTemplatePackDescriptor[] = [
       "Figures for papers and preprints: panel composition with byte-exact, lossless output for reproducible submissions.",
     publisher: "m0saic-dev",
   },
+  {
+    id: "education",
+    title: "Education",
+    description:
+      "Cards for classroom data: grades, progress, and other numbers teachers and students actually look at.",
+    publisher: "tim3716",
+  },
 ];
 
 // `repo` is the named export the platform's template-repo loader looks for
