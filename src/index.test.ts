@@ -89,17 +89,17 @@ describe("community-templates entry contract", () => {
       String(t.id),
     );
     expect(printOnly).toEqual(["@m0saic-dev/print/dvd-wrap/v1"]);
-    // Union with publishers, no duplicates. Note BOTH publishers are needed
+    // Union with publishers, no duplicates. Note EVERY publisher is needed
     // to cover everything: the front door belongs to no pack, so no set of
     // pack keys can ever reach it — that is the packless shape, not a gap.
     const union = getTemplates({
-      publishers: ["m0saic-dev", REPO_OWN_HANDLE],
+      publishers: ["m0saic-dev", "exsencer", REPO_OWN_HANDLE],
       packs: ["m0saic-dev/print"],
     });
     expect(union.length).toBe(getTemplates().length);
     expect(
       getTemplates({ publishers: ["m0saic-dev"] }).length,
-    ).toBe(getTemplates().length - 1);
+    ).toBe(getTemplates().length - getTemplates({ publishers: ["exsencer"] }).length - 1);
     expect(getTemplates({ packs: ["m0saic-dev/no-such-pack"] })).toEqual([]);
   });
 });

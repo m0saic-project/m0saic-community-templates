@@ -140,4 +140,16 @@ export const templateRegistry: CommunityTemplateRegistryEntry[] = [
     tags: ["science", "figure", "panels", "publication", "reproducible", "researchers", "academic", "paper", "journal"],
     author: "m0saic-dev",
   },
+
+  // ── exsencer / education ────────────────────────────────────
+  {
+    slug: "report-card",
+    templateId: "@exsencer/education/report-card/v1",
+    exportName: "ReportCardV1",
+    title: "Report Card",
+    description:
+      "A mosaic report card: five subject tiles at uneven sizes (one hero, four small) plus a sixth accent tile whose average and letter grade are computed live from the five grades on every render, never authored. Every name and grade is bound to the rect that shows it.",
+    tags: ["education", "data", "card", "school", "grades"],
+    author: "exsencer",
+  },
 ];
