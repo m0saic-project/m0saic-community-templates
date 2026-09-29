@@ -1,0 +1,48 @@
+name: Request a template
+description: Ask for a template that does not exist yet. Say what it should show and where it goes.
+title: "[template] "
+labels: ["template-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks — requests shape what gets built next. One request per issue.
+  - type: input
+    id: what
+    attributes:
+      label: What should it show?
+      description: The one-line idea. "A lyric video from my song and three clips", "a monthly KPI card".
+      placeholder: A ...
+    validations:
+      required: true
+  - type: textarea
+    id: detail
+    attributes:
+      label: Describe it
+      description: What goes in (media, text, numbers), what comes out, what the viewer sees first.
+    validations:
+      required: true
+  - type: dropdown
+    id: canvas
+    attributes:
+      label: Canvas
+      options:
+        - Vertical 9:16 (reels, shorts, stories)
+        - Landscape 16:9
+        - Square 1:1
+        - Still image
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: refs
+    attributes:
+      label: Reference links
+      description: Examples of the look you mean — videos, posts, screenshots.
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Would you contribute it?
+      options:
+        - label: I could build it with the starter and the sandbox loop if someone points me at them
+        - label: I can supply footage or a design reference
