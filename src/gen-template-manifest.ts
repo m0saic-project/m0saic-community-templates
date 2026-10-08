@@ -23,6 +23,10 @@ import type {
 import { asTemplateId } from "@m0saic/types";
 import { parseTemplateId } from "@m0saic/platform";
 
+// FIRST: the catalog — the publishers below define their templates at load,
+// and a sidecar-described template needs its entry applied before the
+// definition-time conventions judge it (see ./catalog).
+import "./catalog";
 import { templateRegistry } from "./template-registry";
 import { TEMPLATE_REPO, TEMPLATE_PACKS } from "./repo";
 import { PUBLISHER_ENTRIES, PUBLISHER_IDS } from "./publishers";

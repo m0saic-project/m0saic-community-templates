@@ -13,9 +13,11 @@ import { TipGoalV1 } from "./tip-goal/v1/tip-goal";
  * The pack SHIPPED on the m0saic 0.2.0 line (it is hashed in
  * `frozen.manifest.json`, whose `release` is the community tag, not the m0saic
  * line), so the conventions that landed with 0.3.0 — `bindingsDeclared`,
- * `canvasFill`, `bindingHints` — report in `lagging`, not `findings`: behind,
- * not broken, and the fix is each template's next vN. Without `shippedAt`
- * this test failed on every one of them from the day they landed.
+ * `canvasFill`, `bindingHints` — and 0.3.1's `catalogSidecar` (their files
+ * describe themselves; since 0.3.1 that lives in template-catalog.json) —
+ * report in `lagging`, not `findings`: behind, not broken, and the fix is each
+ * template's next vN. Without `shippedAt` this test failed on every one of
+ * them from the day they landed.
  */
 describe("creator pack — render-time conventions at defaults", () => {
   for (const template of [DropCalendarV1, NewVideoStoryV1, TipGoalV1]) {
@@ -25,7 +27,7 @@ describe("creator pack — render-time conventions at defaults", () => {
       const errors = audit.findings.filter((f) => f.severity === "error");
       expect(errors).toEqual([]);
       // Visible, never fatal: what the next vN of each clears.
-      for (const f of audit.lagging) expect(["bindingsDeclared", "canvasFill", "bindingHints"]).toContain(f.convention);
+      for (const f of audit.lagging) expect(["bindingsDeclared", "canvasFill", "bindingHints", "catalogSidecar"]).toContain(f.convention);
     }, 60_000);
   }
 });

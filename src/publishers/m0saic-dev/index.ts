@@ -4,6 +4,12 @@ import { LyricVideo } from "./templates/music";
 import { SearchTyping } from "./templates/hero";
 import { DvdWrapV1 } from "./templates/print/dvd-wrap/v1";
 import { MultiPanelFigure } from "./templates/science/multi-panel-figure/v1";
+import { PipelineReviewV1 } from "./templates/sales";
+import { ChipsetV1 } from "./templates/integrations";
+import { PersonalOfferV1 } from "./templates/retail";
+import { RunRecapV1 } from "./templates/devops";
+import { WeeklyBriefV1 } from "./templates/insights";
+import { VisualDiffV1 } from "./templates/devtools";
 
 export { publisher } from "./publisher";
 export * from "./templates";
@@ -28,4 +34,10 @@ export const templates = [
   LyricVideo,
   DvdWrapV1,
   MultiPanelFigure,
+  PipelineReviewV1,
+  ChipsetV1,
+  PersonalOfferV1,
+  RunRecapV1,
+  WeeklyBriefV1,
+  VisualDiffV1,
 ];

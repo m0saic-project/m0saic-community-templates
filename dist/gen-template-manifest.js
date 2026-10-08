@@ -52,6 +52,10 @@ const fs = __importStar(require("node:fs"));
 const path = __importStar(require("node:path"));
 const types_1 = require("@m0saic/types");
 const platform_1 = require("@m0saic/platform");
+// FIRST: the catalog — the publishers below define their templates at load,
+// and a sidecar-described template needs its entry applied before the
+// definition-time conventions judge it (see ./catalog).
+require("./catalog");
 const template_registry_1 = require("./template-registry");
 const repo_1 = require("./repo");
 const publishers_1 = require("./publishers");

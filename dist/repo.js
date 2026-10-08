@@ -39,6 +39,9 @@ exports.TEMPLATE_REPO = {
     // same" holds per community release, not across them — nothing pins an
     // old M, on purpose.
     helloWorld: (0, types_1.asTemplateId)("@m0saic-community/hello-world/v1"),
+    // The template-convention line this repo targets (m0saic 0.3.1): the checks
+    // hold its templates to the rules up to it; newer rules are advice until it moves.
+    conventions: "0.3.1",
 };
 /**
  * Named packs in this repo. Pack ids match the `{pack}` segment of member
@@ -94,6 +97,42 @@ exports.TEMPLATE_PACKS = [
         id: "science",
         title: "Science & Publication",
         description: "Figures for papers and preprints: panel composition with byte-exact, lossless output for reproducible submissions.",
+        publisher: "m0saic-dev",
+    },
+    {
+        id: "sales",
+        title: "Sales",
+        description: "Leadership dashboards from a Salesforce export: the quarter's pipeline as a guided walkthrough with your notes, every number derived from the deals you paste.",
+        publisher: "m0saic-dev",
+    },
+    {
+        id: "integrations",
+        title: "Integrations",
+        description: "Your product at the centre of its partner map: a chip on a circuit board, every partner a pill, every trace lit in turn.",
+        publisher: "m0saic-dev",
+    },
+    {
+        id: "retail",
+        title: "Retail",
+        description: "The ad is a row of customer data: a promo clip addressed to one customer, every field a prop, a thousand customers a loop over a thousand rows.",
+        publisher: "m0saic-dev",
+    },
+    {
+        id: "devops",
+        title: "Devops",
+        description: "What a pipeline sends when it is done: the run recap as a clip, every step, stat and cost from the run record.",
+        publisher: "m0saic-dev",
+    },
+    {
+        id: "insights",
+        title: "Insights",
+        description: "The Monday brief as a video: stat tiles with sparklines from the questions a data layer answered, the same brief every week with only the numbers moving.",
+        publisher: "m0saic-dev",
+    },
+    {
+        id: "devtools",
+        title: "Devtools",
+        description: "Main vs this PR: two browser captures diffed element to element, drawn as wireframes with every change numbered and visited by a camera.",
         publisher: "m0saic-dev",
     },
 ];

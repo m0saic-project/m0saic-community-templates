@@ -87,6 +87,78 @@ export const templateRegistry: CommunityTemplateRegistryEntry[] = [
     author: "m0saic-dev",
   },
 
+  // ── m0saic-dev / sales ─────────────────────────────────────
+  {
+    slug: "pipeline-review",
+    templateId: "@m0saic-dev/sales/pipeline-review/v1",
+    exportName: "PipelineReviewV1",
+    title: "Pipeline Review",
+    description:
+      "A quarter's Salesforce opportunities as a leadership dashboard video: closed won, win rate, what slipped past its close month and what is still open, won revenue by month and by region, the deals that need a new close date, and who carried the quarter. Give any headline a note and the video stops on it: the camera zooms in, your note shows below, then it moves on. Every number is derived from the Deals prop, so next quarter is a new paste and a re-render.",
+    tags: ["sales", "dashboard", "pipeline", "salesforce", "kpi", "walkthrough", "leadership", "report", "animated", "renderable"],
+    author: "m0saic-dev",
+  },
+
+  // ── m0saic-dev / integrations ──────────────────────────────
+  {
+    slug: "chipset",
+    templateId: "@m0saic-dev/integrations/chipset/v1",
+    exportName: "ChipsetV1",
+    title: "Chipset",
+    description:
+      "Your product as the chip on a circuit board, wired to every partner: a glowing packet runs down each trace in turn and lights the partner's pill. Edit the partner list and the pills re-flow and the traces re-route, one or two rows on a wide canvas, two columns on a phone.",
+    tags: ["integrations", "partners", "hero", "circuit", "marketing", "animated", "loop", "landing-page", "marketers", "renderable"],
+    author: "m0saic-dev",
+  },
+
+  // ── m0saic-dev / retail ────────────────────────────────────
+  {
+    slug: "personal-offer",
+    templateId: "@m0saic-dev/retail/personal-offer/v1",
+    exportName: "PersonalOfferV1",
+    title: "Personal Offer",
+    description:
+      "A promo clip addressed to one customer: their name, the product picked for them, their discount and their code. The ad is a row of customer data: a weekly send fills the props per customer and every clip renders inside the same signed-off look. Ships generic product art as inline SVG; a real product shot swaps in.",
+    tags: ["retail", "promo", "personalized", "newsletter", "offer", "discount", "beauty", "marketing", "data-driven", "animated", "renderable"],
+    author: "m0saic-dev",
+  },
+
+  // ── m0saic-dev / devops ────────────────────────────────────
+  {
+    slug: "run-recap",
+    templateId: "@m0saic-dev/devops/run-recap/v1",
+    exportName: "RunRecapV1",
+    title: "Run Recap",
+    description:
+      "The report an agent-workflow run sends when it is done: status, trigger, each step with its kind, duration and retries, the outcome, up to four stat tiles, the cost and the link. One more job on run.completed turns the run record into props; the agent writes one sentence, the template keeps every report looking like one.",
+    tags: ["devops", "ci", "agents", "workflow", "report", "recap", "notification", "slack", "email", "data-driven", "animated", "renderable"],
+    author: "m0saic-dev",
+  },
+
+  // ── m0saic-dev / insights ──────────────────────────────────
+  {
+    slug: "weekly-brief",
+    templateId: "@m0saic-dev/insights/weekly-brief/v1",
+    exportName: "WeeklyBriefV1",
+    title: "Weekly Brief",
+    description:
+      "The Monday brief as a video: a greeting, one sentence on the week, up to six stat tiles with a signed delta and a sparkline each, the two or three things worth knowing, and where the numbers came from. A brief is a list of questions answered: a data-retrieval layer returns the rows and the caption, the template is where they land, and the exec gets the same video every week with only the numbers moving.",
+    tags: ["insights", "kpi", "dashboard", "brief", "executive", "weekly", "email", "agents", "data-driven", "charts", "animated", "renderable"],
+    author: "m0saic-dev",
+  },
+
+  // ── m0saic-dev / devtools ──────────────────────────────────
+  {
+    slug: "visual-diff",
+    templateId: "@m0saic-dev/devtools/visual-diff/v1",
+    exportName: "VisualDiffV1",
+    title: "Visual Diff",
+    description:
+      "main vs this PR: two captures of the same page (any HTML, taken in a real browser) drawn as labelled wireframes side by side, every difference found by matching element to element, outlined and numbered, and visited by a camera with a card per change. Writes each side's layout as an .m0c sidecar with every area labelled, and the diff as JSON: the exact geometry of what changed, not just a picture of it.",
+    tags: ["devtools", "visual-regression", "playwright", "e2e", "pull-request", "wireframe", "diff", "layout", "review", "animated", "renderable"],
+    author: "m0saic-dev",
+  },
+
   // ── m0saic-dev / hero ──────────────────────────────────────
   {
     slug: "search-typing",

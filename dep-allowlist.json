@@ -20,6 +20,13 @@
       "reason": "build tool (writes template-manifest.json) — not template runtime code"
     },
     {
+      "file": "src/gen-web-template-ids.ts",
+      "allow": [
+        "node:fs"
+      ],
+      "reason": "build tool (writes web-template-ids.json, the ids the browser entry src/web.ts carries) — not template runtime code"
+    },
+    {
       "file": "src/hello-world/v1/hello-world.ts",
       "allow": [
         "node:fs"

@@ -16,6 +16,9 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.templates = exports.templateRegistry = exports.PUBLISHER_IDS = exports.listRegisteredTemplateIds = exports.getTemplate = exports.requireTemplate = void 0;
 exports.getTemplates = getTemplates;
+// FIRST: declare the repo's catalog (0.3.1), so every template below is
+// defined with its sidecar entry applied — see ./catalog.
+require("./catalog");
 const publishers_1 = require("./publishers");
 var template_utils_1 = require("@m0saic/template-utils");
 Object.defineProperty(exports, "requireTemplate", { enumerable: true, get: function () { return template_utils_1.requireTemplate; } });

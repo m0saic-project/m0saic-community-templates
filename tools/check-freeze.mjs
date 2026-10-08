@@ -3,7 +3,8 @@
 //
 // A template that has shipped in a signed release is frozen: its files never
 // change again — a fix is a new vN+1 folder beside it, and the old one is
-// deprecated (`deprecated: { replacement }`), never edited. This script is
+// deprecated in its catalog sidecar (<name>.catalog.json beside the code —
+// the freeze hashes code, never the sidecar), never edited. This script is
 // the machinery behind that sentence, so it is not something to remember:
 //
 //   node tools/check-freeze.mjs                   the gate (build / CI): exit 1 if a
@@ -141,7 +142,7 @@ export function mintManifest(packageRoot, { tag, commit, note, excluded = [], no
     release: tag,
     commit,
     mintedAt: now.toISOString(),
-    note: note || "Frozen at this release. A shipped template's files never change again — comments included (byte hashes). A fix is a new vN+1 folder; deprecate the old one and point `deprecated.replacement` at the new id. See CONTRIBUTING.md.",
+    note: note || "Frozen at this release. A shipped template's files never change again — comments included (byte hashes). A fix is a new vN+1 folder; deprecate the old one in its catalog sidecar (<name>.catalog.json beside the code), pointing its replacement at the new id. See CONTRIBUTING.md.",
     hashVersion: FREEZE_HASH_VERSION,
     excluded: [...excluded].sort(),
     files,
@@ -272,7 +273,7 @@ function main(argv) {
     for (const f of r.changed) console.error(`    changed  ${f}`);
     for (const f of r.deleted) console.error(`    DELETED  ${f}  (removing shipped behaviour)`);
     console.error(`\n[check-freeze] A frozen file never changes — comments included. Copy the template into a NEW vN+1/ folder,`);
-    console.error(`[check-freeze] make the change there, and set \`deprecated: { replacement }\` on the old version.`);
+    console.error(`[check-freeze] make the change there, and deprecate the old version in its catalog sidecar, <name>.catalog.json (never in the code).`);
     console.error(`[check-freeze] (Minting a NEW release: node tools/check-freeze.mjs --update --tag <tag>)\n`);
     return 1;
   }

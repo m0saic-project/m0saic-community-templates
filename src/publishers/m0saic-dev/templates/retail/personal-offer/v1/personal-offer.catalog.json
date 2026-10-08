@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "templateId": "@m0saic-dev/retail/personal-offer/v1",
+  "label": "Personal Offer",
+  "description": "A promo clip addressed to one customer: their name, the product picked for them, their discount and their code. The ad is a row of customer data - a weekly send fills the props per customer and every clip renders inside the same signed-off look. Ships generic product art as inline SVG; a real product shot swaps in.",
+  "tags": [
+    "retail",
+    "promo",
+    "personalized",
+    "newsletter",
+    "offer",
+    "discount",
+    "beauty",
+    "marketing",
+    "data-driven",
+    "video"
+  ],
+  "props": {
+    "platform": {
+      "label": "Platform",
+      "description": "Where the clip is going; sets the canvas it renders at when the resolution is left locked to the template. story is 9:16 (1080x1920) for Stories, Reels and TikTok; feed is 4:5 (1080x1350) for a portrait post; square is 1:1 (1080x1080) for feeds, chat and email tiles; landscape is 16:9 (1920x1080) for an email header, the web or a player. An explicit width and height still win.",
+      "placeholder": "story",
+      "order": 1
+    },
+    "customerName": {
+      "label": "Customer name",
+      "description": "Who the clip is for: the name in the greeting on the first frame. Required.",
+      "placeholder": "Susie",
+      "order": 2
+    },
+    "greeting": {
+      "label": "Greeting",
+      "description": "The word before the name. Empty leaves the name alone.",
+      "placeholder": "Hi",
+      "order": 3
+    },
+    "hook": {
+      "label": "Opening line",
+      "description": "One line under the greeting, why they are hearing from you this week. Empty removes it.",
+      "placeholder": "We set something aside for you this week.",
+      "order": 4
+    },
+    "brandName": {
+      "label": "Brand",
+      "description": "The small wordmark on every frame, and the clip's name. A logo replaces the wordmark on the canvas. Required.",
+      "placeholder": "Atelier Nine",
+      "order": 5
+    },
+    "brandLogo": {
+      "label": "Brand logo",
+      "description": "Zero or one logo in place of the wordmark text: a PNG (or any image) or a short video, which loops muted. Fitted left in the top row - an absolute path from the CLI, or a picked file in Make. Empty draws the brand name.",
+      "order": 6
+    },
+    "productKicker": {
+      "label": "Product kicker",
+      "description": "The short line above the product name, in the accent. Empty removes it.",
+      "placeholder": "New in fragrance",
+      "order": 7
+    },
+    "productName": {
+      "label": "Product",
+      "description": "The product picked for this customer, large, on the second beat. Required.",
+      "placeholder": "Velvet Iris",
+      "order": 8
+    },
+    "productNote": {
+      "label": "Product note",
+      "description": "One or two sentences about the product, under its name. Empty removes it.",
+      "placeholder": "Eau de parfum. Iris, sandalwood and a trace of pink pepper.",
+      "order": 9
+    },
+    "productArt": {
+      "label": "Bundled art",
+      "description": "Which generic illustration stands in for the product when there is no product shot: perfume, lipstick, cream or serum. Tinted from the accent.",
+      "placeholder": "perfume",
+      "order": 10
+    },
+    "productImage": {
+      "label": "Product shot",
+      "description": "Zero or one image of the real product, fitted on the card in place of the bundled art - an absolute path from the CLI, or a picked file in Make.",
+      "order": 11
+    },
+    "offerLabel": {
+      "label": "Offer label",
+      "description": "The short line above the percentage. Empty removes it.",
+      "placeholder": "Your member reward",
+      "order": 12
+    },
+    "discountPercent": {
+      "label": "Percent off",
+      "description": "Whole percent off, 1 to 90, drawn as the big line of the last beat.",
+      "placeholder": "20",
+      "order": 13
+    },
+    "promoCode": {
+      "label": "Promo code",
+      "description": "The code in the pill, held to the last frame. Mint one per customer. Empty removes the pill.",
+      "placeholder": "SUSIE20",
+      "order": 14
+    },
+    "expiry": {
+      "label": "Ends",
+      "description": "When the offer ends, under the code. Empty removes it.",
+      "placeholder": "Through Sunday, in store and online",
+      "order": 15
+    },
+    "ctaLabel": {
+      "label": "Call to action",
+      "description": "What to do next. Empty removes it.",
+      "placeholder": "Shop the new arrivals",
+      "order": 16
+    },
+    "ctaUrl": {
+      "label": "Link",
+      "description": "Where to go, under the call to action, in the accent. Empty removes it.",
+      "placeholder": "atelier-nine.example/new",
+      "order": 17
+    },
+    "theme": {
+      "label": "Theme",
+      "description": "Light (a warm paper page, dark text) or dark (a near-black page, light text). Background and Text override either half when set.",
+      "placeholder": "light",
+      "order": 18
+    },
+    "accent": {
+      "label": "Accent",
+      "description": "The brand colour: the product card, the kicker, the percentage, the code pill, the link and the progress line, as #rrggbb. The bundled art tints to it.",
+      "order": 19
+    },
+    "background": {
+      "label": "Background",
+      "description": "The page colour as #rrggbb. Empty takes the theme's.",
+      "placeholder": "from theme",
+      "order": 20
+    },
+    "ink": {
+      "label": "Text",
+      "description": "The text colour as #rrggbb. Empty takes the theme's. Secondary lines are this colour mixed toward the page.",
+      "placeholder": "from theme",
+      "order": 21
+    },
+    "durationSec": {
+      "label": "Length (s)",
+      "description": "Clip length in whole seconds, 6 to 30. The three beats keep their shares; an explicit duration pin overrides it.",
+      "placeholder": "10",
+      "order": 22
+    },
+    "debugLayout": {
+      "label": "Debug layout",
+      "description": "Dev-only: check the layout contract (every line fits its box, the card stays square, the progress line holds the bottom edge) and draw it over the frame.",
+      "order": 23
+    }
+  }
+}

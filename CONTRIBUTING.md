@@ -46,9 +46,18 @@ To fix or improve a shipped template:
 1. Copy its folder to the next version — `…/<slug>/v1/` → `…/<slug>/v2/` —
    and make the change there (a shared helper it needs changed: copy the
    helper into the new folder too; `_shared/` is frozen on the same terms).
-2. On the old version set `deprecated: { replacement: "@<handle>/<pack>/<slug>/v2" }`
-   (a reason is welcome). It stays registered and renderable; hosts hide it
-   by default and point at the replacement.
+2. Deprecate the old version in its catalog sidecar — `<name>.catalog.json`
+   beside the old version's code (create it if there is none). The freeze
+   hashes code, never the sidecar, so this is the one file in a shipped
+   folder you may add or edit:
+
+   ```json
+   { "schemaVersion": 1, "templateId": "@<handle>/<pack>/<slug>/v1",
+     "deprecated": { "reason": "…", "replacement": "@<handle>/<pack>/<slug>/v2", "since": "YYYY-MM-DD" } }
+   ```
+
+   It stays registered and renderable; hosts hide it by default and point at
+   the replacement. A deprecation that has shipped is never removed.
 3. Register the new id in `src/template-registry.ts`. The registry, the
    barrels, `publisher.ts` and `src/repo.ts` are not frozen — they are what a
    new template has to touch.
@@ -67,9 +76,23 @@ from the first tag that ships it. Between releases, new folders are simply
   them in your publisher's `index.ts`, and add a `src/template-registry.ts`
   entry per template (`author` = your handle). `npm run build` regenerates
   `template-manifest.json` and enforces id/author/uniqueness rules.
+- Describe each template in its catalog sidecar, `<name>.catalog.json` beside
+  its module — label, description, tags, visibility, and each prop's label /
+  hint / placeholder — never in the template's code (m0saic 0.3.1+; the code
+  freezes when it ships, the sidecar stays editable). The build gathers the
+  sidecars into `template-catalog.json`.
 - Every template needs at least one unit test next to its source asserting
   deterministic internals (layout geometry, resolved node tree, or
   validation errors).
+- Runs in Mosaic Web? Add it to the browser entry, `src/web.ts` (the build
+  writes `web-template-ids.json` from it). The rule, held by `src/web.test.ts`:
+  nothing in its import closure may touch a node builtin or a deep
+  `@m0saic/template-utils/dist/…` helper, and no media / folder / file prop
+  may be `required` — in the browser every media prop is empty, so what people
+  play with is the template's empty-media look. Give every media slot a
+  stand-in (inline SVG data-URI, URL-encoded, no `;utf8`) and say so in the
+  prop's hint. A template that needs a real file to mean anything stays out of
+  the entry and ships as a Desktop-only card in the web gallery.
 - Renders must be deterministic: same props → same output. No wall-clock
   time, no unseeded randomness (expose seeds as props), no hidden state.
 - Stay on the lattice: every split count above 12 in the rendered layout must

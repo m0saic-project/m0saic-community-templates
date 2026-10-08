@@ -10,7 +10,8 @@
     "assets": {
       "templatesDir": "assets/templates"
     },
-    "helloWorld": "@m0saic-community/hello-world/v1"
+    "helloWorld": "@m0saic-community/hello-world/v1",
+    "conventions": "0.3.1"
   },
   "entryModule": "./dist/index.js",
   "templates": [
@@ -160,6 +161,168 @@
       }
     },
     {
+      "slug": "pipeline-review",
+      "templateKey": "@m0saic-dev/sales/pipeline-review/v1",
+      "title": "Pipeline Review",
+      "description": "A quarter's Salesforce opportunities as a leadership dashboard video: closed won, win rate, what slipped past its close month and what is still open, won revenue by month and by region, the deals that need a new close date, and who carried the quarter. Give any headline a note and the video stops on it: the camera zooms in, your note shows below, then it moves on. Every number is derived from the Deals prop, so next quarter is a new paste and a re-render.",
+      "tags": [
+        "sales",
+        "dashboard",
+        "pipeline",
+        "salesforce",
+        "kpi",
+        "walkthrough",
+        "leadership",
+        "report",
+        "animated",
+        "renderable"
+      ],
+      "pack": "sales",
+      "publisher": "m0saic-dev",
+      "author": "m0saic-dev",
+      "preview": {
+        "image": "assets/templates/@m0saic-dev__sales__pipeline-review__v1/preview.png",
+        "video": "assets/templates/@m0saic-dev__sales__pipeline-review__v1/preview.mp4",
+        "poster": "assets/templates/@m0saic-dev__sales__pipeline-review__v1/poster.png"
+      }
+    },
+    {
+      "slug": "chipset",
+      "templateKey": "@m0saic-dev/integrations/chipset/v1",
+      "title": "Chipset",
+      "description": "Your product as the chip on a circuit board, wired to every partner: a glowing packet runs down each trace in turn and lights the partner's pill. Edit the partner list and the pills re-flow and the traces re-route, one or two rows on a wide canvas, two columns on a phone.",
+      "tags": [
+        "integrations",
+        "partners",
+        "hero",
+        "circuit",
+        "marketing",
+        "animated",
+        "loop",
+        "landing-page",
+        "marketers",
+        "renderable"
+      ],
+      "pack": "integrations",
+      "publisher": "m0saic-dev",
+      "author": "m0saic-dev",
+      "preview": {
+        "image": "assets/templates/@m0saic-dev__integrations__chipset__v1/preview.png",
+        "video": "assets/templates/@m0saic-dev__integrations__chipset__v1/preview.mp4",
+        "poster": "assets/templates/@m0saic-dev__integrations__chipset__v1/poster.png"
+      }
+    },
+    {
+      "slug": "personal-offer",
+      "templateKey": "@m0saic-dev/retail/personal-offer/v1",
+      "title": "Personal Offer",
+      "description": "A promo clip addressed to one customer: their name, the product picked for them, their discount and their code. The ad is a row of customer data: a weekly send fills the props per customer and every clip renders inside the same signed-off look. Ships generic product art as inline SVG; a real product shot swaps in.",
+      "tags": [
+        "retail",
+        "promo",
+        "personalized",
+        "newsletter",
+        "offer",
+        "discount",
+        "beauty",
+        "marketing",
+        "data-driven",
+        "animated",
+        "renderable"
+      ],
+      "pack": "retail",
+      "publisher": "m0saic-dev",
+      "author": "m0saic-dev",
+      "preview": {
+        "image": "assets/templates/@m0saic-dev__retail__personal-offer__v1/preview.png",
+        "video": "assets/templates/@m0saic-dev__retail__personal-offer__v1/preview.mp4",
+        "poster": "assets/templates/@m0saic-dev__retail__personal-offer__v1/poster.png"
+      }
+    },
+    {
+      "slug": "run-recap",
+      "templateKey": "@m0saic-dev/devops/run-recap/v1",
+      "title": "Run Recap",
+      "description": "The report an agent-workflow run sends when it is done: status, trigger, each step with its kind, duration and retries, the outcome, up to four stat tiles, the cost and the link. One more job on run.completed turns the run record into props; the agent writes one sentence, the template keeps every report looking like one.",
+      "tags": [
+        "devops",
+        "ci",
+        "agents",
+        "workflow",
+        "report",
+        "recap",
+        "notification",
+        "slack",
+        "email",
+        "data-driven",
+        "animated",
+        "renderable"
+      ],
+      "pack": "devops",
+      "publisher": "m0saic-dev",
+      "author": "m0saic-dev",
+      "preview": {
+        "image": "assets/templates/@m0saic-dev__devops__run-recap__v1/preview.png",
+        "video": "assets/templates/@m0saic-dev__devops__run-recap__v1/preview.mp4",
+        "poster": "assets/templates/@m0saic-dev__devops__run-recap__v1/poster.png"
+      }
+    },
+    {
+      "slug": "weekly-brief",
+      "templateKey": "@m0saic-dev/insights/weekly-brief/v1",
+      "title": "Weekly Brief",
+      "description": "The Monday brief as a video: a greeting, one sentence on the week, up to six stat tiles with a signed delta and a sparkline each, the two or three things worth knowing, and where the numbers came from. A brief is a list of questions answered: a data-retrieval layer returns the rows and the caption, the template is where they land, and the exec gets the same video every week with only the numbers moving.",
+      "tags": [
+        "insights",
+        "kpi",
+        "dashboard",
+        "brief",
+        "executive",
+        "weekly",
+        "email",
+        "agents",
+        "data-driven",
+        "charts",
+        "animated",
+        "renderable"
+      ],
+      "pack": "insights",
+      "publisher": "m0saic-dev",
+      "author": "m0saic-dev",
+      "preview": {
+        "image": "assets/templates/@m0saic-dev__insights__weekly-brief__v1/preview.png",
+        "video": "assets/templates/@m0saic-dev__insights__weekly-brief__v1/preview.mp4",
+        "poster": "assets/templates/@m0saic-dev__insights__weekly-brief__v1/poster.png"
+      }
+    },
+    {
+      "slug": "visual-diff",
+      "templateKey": "@m0saic-dev/devtools/visual-diff/v1",
+      "title": "Visual Diff",
+      "description": "main vs this PR: two captures of the same page (any HTML, taken in a real browser) drawn as labelled wireframes side by side, every difference found by matching element to element, outlined and numbered, and visited by a camera with a card per change. Writes each side's layout as an .m0c sidecar with every area labelled, and the diff as JSON: the exact geometry of what changed, not just a picture of it.",
+      "tags": [
+        "devtools",
+        "visual-regression",
+        "playwright",
+        "e2e",
+        "pull-request",
+        "wireframe",
+        "diff",
+        "layout",
+        "review",
+        "animated",
+        "renderable"
+      ],
+      "pack": "devtools",
+      "publisher": "m0saic-dev",
+      "author": "m0saic-dev",
+      "preview": {
+        "image": "assets/templates/@m0saic-dev__devtools__visual-diff__v1/preview.png",
+        "video": "assets/templates/@m0saic-dev__devtools__visual-diff__v1/preview.mp4",
+        "poster": "assets/templates/@m0saic-dev__devtools__visual-diff__v1/poster.png"
+      }
+    },
+    {
       "slug": "search-typing",
       "templateKey": "@m0saic-dev/hero/search-typing/v1",
       "title": "Search Typing",
@@ -295,6 +458,42 @@
       "title": "Science & Publication",
       "description": "Figures for papers and preprints: panel composition with byte-exact, lossless output for reproducible submissions.",
       "publisher": "m0saic-dev"
+    },
+    {
+      "id": "sales",
+      "title": "Sales",
+      "description": "Leadership dashboards from a Salesforce export: the quarter's pipeline as a guided walkthrough with your notes, every number derived from the deals you paste.",
+      "publisher": "m0saic-dev"
+    },
+    {
+      "id": "integrations",
+      "title": "Integrations",
+      "description": "Your product at the centre of its partner map: a chip on a circuit board, every partner a pill, every trace lit in turn.",
+      "publisher": "m0saic-dev"
+    },
+    {
+      "id": "retail",
+      "title": "Retail",
+      "description": "The ad is a row of customer data: a promo clip addressed to one customer, every field a prop, a thousand customers a loop over a thousand rows.",
+      "publisher": "m0saic-dev"
+    },
+    {
+      "id": "devops",
+      "title": "Devops",
+      "description": "What a pipeline sends when it is done: the run recap as a clip, every step, stat and cost from the run record.",
+      "publisher": "m0saic-dev"
+    },
+    {
+      "id": "insights",
+      "title": "Insights",
+      "description": "The Monday brief as a video: stat tiles with sparklines from the questions a data layer answered, the same brief every week with only the numbers moving.",
+      "publisher": "m0saic-dev"
+    },
+    {
+      "id": "devtools",
+      "title": "Devtools",
+      "description": "Main vs this PR: two browser captures diffed element to element, drawn as wireframes with every change numbered and visited by a camera.",
+      "publisher": "m0saic-dev"
     }
   ],
   "publishers": [
@@ -303,7 +502,7 @@
       "displayName": "m0saic-dev",
       "description": "Personal publisher of the m0saic founder — experiments and niche templates that live outside the official library.",
       "entryModule": "./dist/publishers/m0saic-dev/index.js",
-      "templateCount": 8
+      "templateCount": 14
     },
     {
       "id": "m0saic-community",

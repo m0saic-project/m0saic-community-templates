@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "templateId": "@m0saic-dev/devtools/visual-diff/v1",
+  "label": "Visual Diff",
+  "description": "main vs this PR: two captures of the same page (any HTML, taken in a real browser by tools/capture-html.mjs) drawn as labelled wireframes side by side, every difference found by matching element to element, outlined and numbered, and visited by a camera with a card per change. Writes each side's layout as an .m0c sidecar with every area labelled, and the diff as JSON - the exact geometry of what changed, not just a picture of it.",
+  "tags": [
+    "devtools",
+    "visual-regression",
+    "playwright",
+    "e2e",
+    "pull-request",
+    "wireframe",
+    "diff",
+    "layout",
+    "review",
+    "video"
+  ],
+  "props": {
+    "platform": {
+      "label": "Platform",
+      "description": "Where the clip is going; sets the canvas it renders at when the resolution is left locked to the template. pr is 16:9 at 1920x1080 for a PR comment or a review call; chat is 1280x720; square and mobile stack the two windows. An explicit width and height still win.",
+      "placeholder": "pr",
+      "order": 1
+    },
+    "brandName": {
+      "label": "Brand",
+      "description": "The small wordmark on every frame, and the clip's name. A logo replaces the wordmark on the canvas. Required.",
+      "placeholder": "Northwind Engineering",
+      "order": 2
+    },
+    "brandLogo": {
+      "label": "Brand logo",
+      "description": "Zero or one logo in place of the wordmark text: an image or a short video, which loops muted.",
+      "order": 3
+    },
+    "title": {
+      "label": "Title",
+      "description": "The change, in one line - the PR number and its title. Required.",
+      "placeholder": "PR #4821 - Tighten the plan card",
+      "order": 4
+    },
+    "before": {
+      "label": "Baseline capture",
+      "description": "The page on main, as tools/capture-html.mjs writes it (page-skeleton capture schema with a label and path per area). Paste the JSON, or double-click the left window.",
+      "order": 5
+    },
+    "after": {
+      "label": "PR capture",
+      "description": "The same page on the PR branch. Differences are found by matching paths, so capture both with the same tool and viewport.",
+      "order": 6
+    },
+    "baseLabel": {
+      "label": "Baseline name",
+      "description": "The name on the left window.",
+      "placeholder": "main",
+      "order": 7
+    },
+    "headLabel": {
+      "label": "Change name",
+      "description": "The name on the right window.",
+      "placeholder": "this PR",
+      "order": 8
+    },
+    "statusLabel": {
+      "label": "Status",
+      "description": "One line under the title, right-aligned: the test run, the page count. Empty removes it.",
+      "placeholder": "65 of 67 E2E tests passed",
+      "order": 9
+    },
+    "notes": {
+      "label": "Reviewer notes",
+      "description": "One line per visited change, in reading order (up to 140 characters each): shown on the card while the camera is on it. A change without a note shows what changed instead.",
+      "order": 10
+    },
+    "maxStops": {
+      "label": "Changes to visit",
+      "description": "How many primary changes the camera visits, 1 to 6, in reading order. Every change stays outlined and numbered.",
+      "placeholder": "4",
+      "order": 11
+    },
+    "tolerancePx": {
+      "label": "Tolerance (px)",
+      "description": "A move or resize smaller than this many pixels is not a difference, 0 to 32.",
+      "placeholder": "2",
+      "order": 12
+    },
+    "showLabels": {
+      "label": "Area labels",
+      "description": "Draw each area's name and size inside its outline - the debug-layout view of the real page.",
+      "order": 13
+    },
+    "theme": {
+      "label": "Theme",
+      "description": "Light (a cool paper page, dark text) or dark (a near-black page, light text). Background and Text override either half when set.",
+      "placeholder": "light",
+      "order": 14
+    },
+    "accent": {
+      "label": "Accent",
+      "description": "The colour of change: primary outlines, badges, the caption, the progress line, as #rrggbb. Removals stay red.",
+      "order": 15
+    },
+    "background": {
+      "label": "Background",
+      "description": "The page colour as #rrggbb. Empty takes the theme's.",
+      "placeholder": "from theme",
+      "order": 16
+    },
+    "ink": {
+      "label": "Text",
+      "description": "The text colour as #rrggbb. Empty takes the theme's.",
+      "placeholder": "from theme",
+      "order": 17
+    },
+    "durationSec": {
+      "label": "Length (s)",
+      "description": "How long the board holds before the camera moves, in whole seconds, 6 to 30. Every visited change adds a stop, so the clip grows with the changes; an explicit duration pin squeezes or holds the whole thing.",
+      "placeholder": "10",
+      "order": 18
+    },
+    "debugLayout": {
+      "label": "Debug layout",
+      "description": "Dev-only: check the layout contract and draw it over the frame.",
+      "order": 19
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "templateId": "@m0saic-dev/integrations/chipset/v1",
+  "label": "Chipset",
+  "description": "Your product as the chip on a circuit board, wired to every partner: a glowing packet runs down each trace in turn and lights the partner's pill. Edit the partner list and the pills re-flow and the traces re-route, one or two rows on a wide canvas, two columns on a phone.",
+  "tags": ["integrations", "partners", "hero", "circuit", "marketing", "animated", "loop", "landing-page"],
+  "props": {
+    "hub": { "label": "Hub", "description": "The chip's label: your product or company.", "order": 1, "primary": true },
+    "partners": { "label": "Partners", "description": "The partners, one pill each. Wide canvases get one or two rows under the chip, tall ones two columns; every trace re-routes.", "order": 2, "primary": true },
+    "hubIcon": { "label": "Hub icon", "description": "The mark above the hub label: \"m0saic\" (the M), \"none\", or an SVG path d drawn in a 24×24 box (a Simple Icons path pastes straight in).", "order": 3 },
+    "accent": { "label": "Accent", "description": "Glow colour as #rrggbb: packets, lit traces, lit pills.", "order": 4 },
+    "seed": { "label": "Seed", "description": "Seed for the board decoration and the order the partners light up in.", "order": 5 }
+  }
+}

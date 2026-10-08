@@ -21,6 +21,12 @@ const music_1 = require("./templates/music");
 const hero_1 = require("./templates/hero");
 const v1_2 = require("./templates/print/dvd-wrap/v1");
 const v1_3 = require("./templates/science/multi-panel-figure/v1");
+const sales_1 = require("./templates/sales");
+const integrations_1 = require("./templates/integrations");
+const retail_1 = require("./templates/retail");
+const devops_1 = require("./templates/devops");
+const insights_1 = require("./templates/insights");
+const devtools_1 = require("./templates/devtools");
 var publisher_1 = require("./publisher");
 Object.defineProperty(exports, "publisher", { enumerable: true, get: function () { return publisher_1.publisher; } });
 __exportStar(require("./templates"), exports);
@@ -44,4 +50,10 @@ exports.templates = [
     music_1.LyricVideo,
     v1_2.DvdWrapV1,
     v1_3.MultiPanelFigure,
+    sales_1.PipelineReviewV1,
+    integrations_1.ChipsetV1,
+    retail_1.PersonalOfferV1,
+    devops_1.RunRecapV1,
+    insights_1.WeeklyBriefV1,
+    devtools_1.VisualDiffV1,
 ];

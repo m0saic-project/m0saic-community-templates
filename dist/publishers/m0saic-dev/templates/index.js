@@ -29,3 +29,11 @@ __exportStar(require("./language"), exports);
 __exportStar(require("./music"), exports);
 __exportStar(require("./print"), exports);
 __exportStar(require("./science"), exports);
+__exportStar(require("./sales"), exports);
+__exportStar(require("./integrations"), exports);
+// 2026-10-07, the outreach lane's second batch (ported from the founder's
+// demo-lab workspace): one template per pack.
+__exportStar(require("./retail"), exports);
+__exportStar(require("./devops"), exports);
+__exportStar(require("./insights"), exports);
+__exportStar(require("./devtools"), exports);

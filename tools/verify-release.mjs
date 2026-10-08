@@ -18,8 +18,9 @@
  *   release.json  { schemaVersion: 1, tag, publishedAt, treeSha256,
  *                   signature: { kid, alg: "ed25519", sig: <base64url> } }
  *
- *   Tree listing: every file under dist/** plus template-manifest.json and
- *   package.json, sorted by POSIX-relative path in plain code-unit order, one
+ *   Tree listing: every file under dist/** plus template-manifest.json,
+ *   package.json and template-catalog.json (each only when present),
+ *   sorted by POSIX-relative path in plain code-unit order, one
  *   line per file: "<path>\0<sha256>\n". JSON files hash on their CANONICAL
  *   form (JSON.stringify(JSON.parse(text))) so a CRLF or re-indented checkout
  *   still verifies; every other file hashes as raw bytes.
@@ -60,7 +61,7 @@ import { fileURLToPath } from "node:url";
 
 export const RELEASE_FILE = "release.json";
 export const SIGNED_DIR = "dist";
-export const SIGNED_FILES = ["template-manifest.json", "package.json"];
+export const SIGNED_FILES = ["template-manifest.json", "package.json", "template-catalog.json"];
 export const PAYLOAD_PREFIX = "m0saic-community-release/v1";
 export const SCHEMA_VERSION = 1;
 export const KEYS_DIR = "keys";

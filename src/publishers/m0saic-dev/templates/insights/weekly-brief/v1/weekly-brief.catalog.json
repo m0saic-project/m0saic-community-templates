@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "templateId": "@m0saic-dev/insights/weekly-brief/v1",
+  "label": "Weekly Brief",
+  "description": "The Monday brief as a video: a greeting, one sentence on the week, up to six stat tiles with a signed delta and a sparkline each, the two or three things worth knowing, and where the numbers came from. A brief is a list of questions answered - a data-retrieval layer returns the rows and the caption, the template is where they land, and the exec gets the same video every week with only the numbers moving.",
+  "tags": [
+    "insights",
+    "kpi",
+    "dashboard",
+    "brief",
+    "executive",
+    "weekly",
+    "email",
+    "agents",
+    "data-driven",
+    "charts",
+    "video"
+  ],
+  "props": {
+    "platform": {
+      "label": "Platform",
+      "description": "Where the brief is going; sets the canvas it renders at when the resolution is left locked to the template. email is 16:9 at 1920x1080 for an inbox player or a slide; chat is the same frame at 1280x720, a lighter file; square is 1080x1080 with two tiles across; mobile is 9:16 (1080x1920), two tiles across and the rest stacked. An explicit width and height still win.",
+      "placeholder": "email",
+      "order": 1
+    },
+    "brandName": {
+      "label": "Brand",
+      "description": "The small wordmark on every frame, and the clip's name. A logo replaces the wordmark on the canvas. Required.",
+      "placeholder": "Harbor & Pine",
+      "order": 2
+    },
+    "brandLogo": {
+      "label": "Brand logo",
+      "description": "Zero or one logo in place of the wordmark text: an image or a short video, which loops muted. An absolute path from the CLI, or a picked file in Make.",
+      "order": 3
+    },
+    "title": {
+      "label": "Title",
+      "description": "What this is, in the top-right line. Empty removes it.",
+      "placeholder": "Weekly brief",
+      "order": 4
+    },
+    "periodLabel": {
+      "label": "Period",
+      "description": "Which week, after the title in the top-right line. Empty removes it.",
+      "placeholder": "Week of 6 Oct 2026",
+      "order": 5
+    },
+    "greeting": {
+      "label": "Greeting",
+      "description": "The words before the name on the first frame. Empty leaves the name alone.",
+      "placeholder": "Good morning",
+      "order": 6
+    },
+    "recipientName": {
+      "label": "Recipient",
+      "description": "Who the brief is for, in the greeting. Empty removes the greeting line.",
+      "placeholder": "Dana",
+      "order": 7
+    },
+    "headline": {
+      "label": "Headline",
+      "description": "The one sentence on the week, under the greeting - the agent's summary. Required.",
+      "placeholder": "Revenue is up 8% on last week, carried by returning customers.",
+      "order": 8
+    },
+    "metrics": {
+      "label": "Metrics",
+      "description": "One to six tiles, each { label, series: [numbers, oldest first, up to 24], format: number | currency | percent, upIsGood, chart: line | bars, caption, note }. The series is the source of truth: its last point is the value, its last change the delta, the run the chart (the shipped line chart or bar graph, nested). A note (up to 140 characters) makes the tile a stop: the video zooms in on it, shows the note on a card, and moves on - click a tile's card in Make to add one. A one-off number with no series takes value and delta as text instead.",
+      "order": 9
+    },
+    "deltaLabel": {
+      "label": "Delta label",
+      "description": "The period every delta compares to, after each delta. Empty removes it.",
+      "placeholder": "vs last week",
+      "order": 10
+    },
+    "highlights": {
+      "label": "Highlights",
+      "description": "Up to three lines worth knowing, under the tiles, each with a dot.",
+      "order": 11
+    },
+    "footer": {
+      "label": "Footer",
+      "description": "Provenance on the last row: how many questions, answered from which sources, when. Empty removes it.",
+      "placeholder": "6 questions, answered live from orders_db and support_db",
+      "order": 12
+    },
+    "ctaUrl": {
+      "label": "Link",
+      "description": "Where to go, in the pill on the last row. Empty removes the pill.",
+      "placeholder": "brief.example/harbor-pine/2026-w41",
+      "order": 13
+    },
+    "theme": {
+      "label": "Theme",
+      "description": "Light (a cool paper page, dark text) or dark (a near-black page, light text). Background and Text override either half when set.",
+      "placeholder": "light",
+      "order": 14
+    },
+    "accent": {
+      "label": "Accent",
+      "description": "The brand colour: the current period of every chart, the highlight dots, the link pill and the progress line, as #rrggbb. Deltas keep their own green / red.",
+      "order": 15
+    },
+    "background": {
+      "label": "Background",
+      "description": "The page colour as #rrggbb. Empty takes the theme's.",
+      "placeholder": "from theme",
+      "order": 16
+    },
+    "ink": {
+      "label": "Text",
+      "description": "The text colour as #rrggbb. Empty takes the theme's. Secondary lines and tiles are this colour mixed toward the page.",
+      "placeholder": "from theme",
+      "order": 17
+    },
+    "durationSec": {
+      "label": "Length (s)",
+      "description": "How long the board takes to build and hold, in whole seconds, 8 to 30. Every tile with a note adds a stop after that (zoom in, time to read, move on), so the clip grows with the notes; an explicit duration pin squeezes or holds the whole thing.",
+      "placeholder": "16",
+      "order": 18
+    },
+    "debugLayout": {
+      "label": "Debug layout",
+      "description": "Dev-only: check the layout contract (every line fits its box, the dots stay round, the progress line holds the bottom edge) and draw it over the frame.",
+      "order": 19
+    }
+  }
+}

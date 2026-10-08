@@ -1,3 +1,6 @@
+// FIRST: declare the repo's catalog (0.3.1), so every template below is
+// defined with its sidecar entry applied — see ./catalog.
+import "./catalog";
 import type { AnyMosaicTemplate } from "@m0saic/template-utils";
 
 import { PUBLISHER_ENTRIES, PUBLISHER_IDS } from "./publishers";

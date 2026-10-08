@@ -1,3 +1,4 @@
+import "./catalog";
 import type { AnyMosaicTemplate } from "@m0saic/template-utils";
 export { requireTemplate, getTemplate, listRegisteredTemplateIds, } from "@m0saic/template-utils";
 export * from "./repo";

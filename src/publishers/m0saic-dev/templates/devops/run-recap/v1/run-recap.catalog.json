@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "templateId": "@m0saic-dev/devops/run-recap/v1",
+  "label": "Run Recap",
+  "description": "The report an agent-workflow run sends when it is done: status, trigger, each step with its kind, duration and retries, the outcome, up to four stat tiles, the cost and the link. One more job on run.completed turns the run record into props; the agent writes one sentence, the template keeps every report looking like one.",
+  "tags": [
+    "devops",
+    "ci",
+    "agents",
+    "workflow",
+    "report",
+    "recap",
+    "notification",
+    "slack",
+    "email",
+    "data-driven",
+    "video"
+  ],
+  "props": {
+    "platform": {
+      "label": "Platform",
+      "description": "Where the report is going; sets the canvas it renders at when the resolution is left locked to the template. chat is 16:9 at 1920x1080 for a Slack, Discord or Teams player; email is the same frame at 1280x720, a lighter file for an inbox; square is 1080x1080 for a chat thumbnail or a dashboard tile; mobile is 9:16 (1080x1920) and lists the steps. An explicit width and height still win.",
+      "placeholder": "chat",
+      "order": 1
+    },
+    "brandName": {
+      "label": "Brand",
+      "description": "The small wordmark on every frame, and the clip's name. A logo replaces the wordmark on the canvas. Required.",
+      "placeholder": "Acme Engineering",
+      "order": 2
+    },
+    "brandLogo": {
+      "label": "Brand logo",
+      "description": "Zero or one logo in place of the wordmark text: an image or a short video, which loops muted. An absolute path from the CLI, or a picked file in Make.",
+      "order": 3
+    },
+    "kicker": {
+      "label": "Kicker",
+      "description": "The small label opposite the wordmark. Empty removes it.",
+      "placeholder": "Run report",
+      "order": 4
+    },
+    "workflowName": {
+      "label": "Workflow",
+      "description": "The workflow that ran, large, beside the status. Required.",
+      "placeholder": "implement-issue",
+      "order": 5
+    },
+    "status": {
+      "label": "Status",
+      "description": "How the run ended: succeeded, failed, needs_review or cancelled. Sets the badge and its colour.",
+      "placeholder": "succeeded",
+      "order": 6
+    },
+    "triggerLabel": {
+      "label": "Trigger",
+      "description": "What started the run, in one line: the ticket, the alert, the schedule. Empty removes it.",
+      "placeholder": "Ticket ACME-482 - Fix null pointer in checkout",
+      "order": 7
+    },
+    "startedLabel": {
+      "label": "Started",
+      "description": "When the run started, as text. Empty removes it.",
+      "placeholder": "Tue 7 Oct, 09:14",
+      "order": 8
+    },
+    "durationLabel": {
+      "label": "Duration",
+      "description": "How long the run took, as text, after the start time. Empty removes it.",
+      "placeholder": "6m 12s",
+      "order": 9
+    },
+    "steps": {
+      "label": "Steps",
+      "description": "The steps in order, 1 to 12, each { name, kind: agent | run | tool, status: passed | failed | skipped | running, durationSec, retries }. Six cards show; more collapse into '+N more'.",
+      "order": 10
+    },
+    "outcomeTitle": {
+      "label": "Outcome",
+      "description": "The result in one line. Required.",
+      "placeholder": "PR #482 is ready for review",
+      "order": 11
+    },
+    "summary": {
+      "label": "Summary",
+      "description": "The agent's one or two sentences on what it did, wrapped to three lines. Empty removes it.",
+      "placeholder": "Null-checked the cart total and added a regression test.",
+      "order": 12
+    },
+    "stats": {
+      "label": "Stats",
+      "description": "Up to four tiles, each { label, value } - files changed, lines, tests, cost. Values are text, so '+120 -34' works.",
+      "order": 13
+    },
+    "costLabel": {
+      "label": "Cost line",
+      "description": "What the run cost and where it ran, as text, on the last row. Empty removes it.",
+      "placeholder": "3 agent steps - $0.77",
+      "order": 14
+    },
+    "outcomeUrl": {
+      "label": "Link",
+      "description": "Where to go, in the pill on the last row. Empty removes the pill.",
+      "placeholder": "git.example/acme/shop/pull/482",
+      "order": 15
+    },
+    "theme": {
+      "label": "Theme",
+      "description": "Dark (a near-black page, light text) or light (a cool paper page, dark text). Background and Text override either half when set.",
+      "placeholder": "dark",
+      "order": 16
+    },
+    "accent": {
+      "label": "Accent",
+      "description": "The brand colour: the link pill, agent-step lines and the progress line, as #rrggbb. Statuses keep their own green / red / amber / grey.",
+      "order": 17
+    },
+    "background": {
+      "label": "Background",
+      "description": "The page colour as #rrggbb. Empty takes the theme's.",
+      "placeholder": "from theme",
+      "order": 18
+    },
+    "ink": {
+      "label": "Text",
+      "description": "The text colour as #rrggbb. Empty takes the theme's. Secondary lines and cards are this colour mixed toward the page.",
+      "placeholder": "from theme",
+      "order": 19
+    },
+    "durationSec": {
+      "label": "Length (s)",
+      "description": "Clip length in whole seconds, 8 to 30. The steps land through the first half, the outcome holds the second; an explicit duration pin overrides it.",
+      "placeholder": "14",
+      "order": 20
+    },
+    "debugLayout": {
+      "label": "Debug layout",
+      "description": "Dev-only: check the layout contract (every line fits its box, the dots stay round, the progress line holds the bottom edge) and draw it over the frame.",
+      "order": 21
+    }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "@m0saic/community-templates",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": false,
   "license": "MIT",
   "repository": {
@@ -16,6 +16,8 @@
   "files": [
     "dist",
     "template-manifest.json",
+    "template-catalog.json",
+    "web-template-ids.json",
     "assets",
     "dep-allowlist.json",
     "LICENSE",
@@ -23,7 +25,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "node tools/check-freeze.mjs && node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\" && tsc -p tsconfig.json && node tools/copy-assets.mjs && node dist/gen-template-manifest.js",
+    "build": "node tools/check-freeze.mjs && node tools/gen-template-catalog.mjs && node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\" && tsc -p tsconfig.json && node tools/copy-assets.mjs && node dist/gen-template-manifest.js && node dist/gen-web-template-ids.js",
     "check:freeze": "node tools/check-freeze.mjs",
     "freeze:mint": "node tools/check-freeze.mjs --update",
     "serve:dev": "node tools/serve-dev.js",
@@ -32,12 +34,13 @@
   "dependencies": {
     "@m0saic/dsl": "^2.0.0",
     "@m0saic/dsl-stdlib": "^3.0.0",
-    "@m0saic/platform": "^0.3.0",
-    "@m0saic/template-utils": "^0.3.0",
-    "@m0saic/types": "^0.3.0"
+    "@m0saic/platform": "^0.3.1",
+    "@m0saic/template-utils": "^0.3.1",
+    "@m0saic/types": "^0.3.1"
   },
   "devDependencies": {
     "@dagrejs/dagre": "3.1.1",
+    "@m0saic/templates": "^0.3.1",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.10.1",
     "jest": "^30.2.0",

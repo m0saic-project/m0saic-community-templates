@@ -13,3 +13,11 @@ export * from "./language";
 export * from "./music";
 export * from "./print";
 export * from "./science";
+export * from "./sales";
+export * from "./integrations";
+// 2026-10-07, the outreach lane's second batch (ported from the founder's
+// demo-lab workspace): one template per pack.
+export * from "./retail";
+export * from "./devops";
+export * from "./insights";
+export * from "./devtools";

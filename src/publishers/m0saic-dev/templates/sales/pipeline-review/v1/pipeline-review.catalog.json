@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "templateId": "@m0saic-dev/sales/pipeline-review/v1",
+  "label": "Pipeline Review",
+  "description": "A quarter's Salesforce opportunities as a leadership dashboard video: closed won, win rate, what slipped past its close month and what is still open, won revenue by month and by region, the deals that need a new close date, and who carried the quarter. Give any headline a note and the video stops on it: the camera zooms in, your note shows below, then it moves on. Every number is derived from the Deals prop, so next quarter is a new paste and a re-render.",
+  "tags": [
+    "sales",
+    "dashboard",
+    "pipeline",
+    "salesforce",
+    "kpi",
+    "walkthrough"
+  ],
+  "props": {
+    "title": {
+      "label": "Title",
+      "description": "The dashboard's headline.",
+      "placeholder": "Q3 2026 Pipeline Review",
+      "order": 1,
+      "primary": true
+    },
+    "subtitle": {
+      "label": "Subtitle",
+      "description": "The line under the headline. Empty shows the quarter span and the deal count.",
+      "placeholder": "Automatic: quarter span and deal count",
+      "order": 2
+    },
+    "quarterStart": {
+      "label": "Quarter starts",
+      "description": "First month of the quarter as YYYY-MM. Closed deals in its three months count toward the quarter; open deals due by its last month count as slipped.",
+      "placeholder": "2026-07",
+      "order": 3
+    },
+    "target": {
+      "label": "Target",
+      "description": "The quarter's bookings target in dollars. Set it and the Closed Won tile shows attainment; 0 shows the deal count instead.",
+      "placeholder": "0 = no target",
+      "order": 4
+    },
+    "deals": {
+      "label": "Deals",
+      "description": "The opportunity export, one row per deal: account, region, owner, stage, amount, close month (YYYY-MM). The raw Salesforce CSV pasted as text works too. Stages \"Closed Won\" and \"Closed Lost\" are closed; anything else is open.",
+      "order": 5
+    },
+    "notes": {
+      "label": "Notes",
+      "description": "A note per headline for the walkthrough. Each one you fill in becomes a stop: the camera zooms to that headline and holds while the note shows. Stops run in reading order; empty notes are skipped, and the video gets longer to give each note time.",
+      "order": 6
+    },
+    "notes.closedWon": {
+      "label": "Closed won",
+      "description": "Your note for the Closed won headline, up to 140 characters (two lines). Empty skips it.",
+      "placeholder": "No stop",
+      "order": 1
+    },
+    "notes.winRate": {
+      "label": "Win rate",
+      "description": "Your note for the Win rate headline, up to 140 characters (two lines). Empty skips it.",
+      "placeholder": "No stop",
+      "order": 2
+    },
+    "notes.slipped": {
+      "label": "Slipped",
+      "description": "Your note for the Slipped headline, up to 140 characters (two lines). Empty skips it.",
+      "placeholder": "No stop",
+      "order": 3
+    },
+    "notes.openPipeline": {
+      "label": "Open pipeline",
+      "description": "Your note for the Open pipeline headline, up to 140 characters (two lines). Empty skips it.",
+      "placeholder": "No stop",
+      "order": 4
+    },
+    "notes.byMonth": {
+      "label": "Won by month",
+      "description": "Your note for the Won by month headline, up to 140 characters (two lines). Empty skips it.",
+      "placeholder": "No stop",
+      "order": 5
+    },
+    "notes.byRegion": {
+      "label": "Won by region",
+      "description": "Your note for the Won by region headline, up to 140 characters (two lines). Empty skips it.",
+      "placeholder": "No stop",
+      "order": 6
+    },
+    "notes.slippedList": {
+      "label": "Needs a new close date",
+      "description": "Your note for the Needs a new close date headline, up to 140 characters (two lines). Empty skips it.",
+      "placeholder": "No stop",
+      "order": 7
+    },
+    "notes.topRegion": {
+      "label": "Top region",
+      "description": "Your note for the Top region headline, up to 140 characters (two lines). Empty skips it.",
+      "placeholder": "No stop",
+      "order": 8
+    },
+    "notes.topRep": {
+      "label": "Top rep",
+      "description": "Your note for the Top rep headline, up to 140 characters (two lines). Empty skips it.",
+      "placeholder": "No stop",
+      "order": 9
+    },
+    "notes.biggestOpen": {
+      "label": "Biggest open deal",
+      "description": "Your note for the Biggest open deal headline, up to 140 characters (two lines). Empty skips it.",
+      "placeholder": "No stop",
+      "order": 10
+    },
+    "accent": {
+      "label": "Accent",
+      "description": "Bar colour for the won-by-month and won-by-region charts.",
+      "order": 7
+    },
+    "pageColor": {
+      "label": "Page color",
+      "description": "The page background behind the cards.",
+      "order": 8
+    },
+    "animate": {
+      "label": "Animate",
+      "description": "Build the dashboard over the opening seconds, then walk the notes. Off renders a still of the finished board (no camera, no notes).",
+      "order": 9
+    }
+  }
+}
